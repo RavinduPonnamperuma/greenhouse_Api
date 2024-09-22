@@ -1,8 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable } from "@nestjs/common";
 
 @Injectable()
 export class AppService {
+  private readonly logger;
   getHello(): string {
-    return 'Hello World!';
+    this.logger.log("Initializing module and connecting to broker");
+    return "Hello World!";
   }
 }
