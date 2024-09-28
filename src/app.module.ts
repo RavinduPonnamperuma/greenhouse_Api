@@ -5,7 +5,7 @@ import { ConfigModule } from "@nestjs/config";
 import { RouterModule } from "@nestjs/core";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { routes } from "../routes";
-import { dataSourceOptions } from "./database-connection/typeorm.config";
+import { dataSourceOptions } from "./config/typeorm.config";
 import { EventEmitterModule } from "@nestjs/event-emitter";
 import { MqttService } from "./modules/mqtt/mqtt.service";
 
