@@ -1,5 +1,5 @@
 {
-  "name": "ravindu-api",
+  "name": "rathi-api",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -39,6 +39,7 @@
     "class-validator": "^0.14.0",
     "EventEmitter": "^1.0.0",
     "mongoose": "^7.4.5",
+    "mqtt": "^5.10.1",
     "mysql2": "^3.11.3",
     "passport-jwt": "^4.0.1",
     "reflect-metadata": "^0.1.13",
