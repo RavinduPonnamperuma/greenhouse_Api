@@ -1,11 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, BaseEntity } from "typeorm";
 import { Polytunnel } from "./polytunnel.schema";
 import { Sensor } from "./sensor.schema";
 import { Actuation } from "./actuation.schema";
 import { DeviceConfiguration } from "./device-config.schema";
 
 @Entity("tbl_device")
-export class Device {
+export class Device extends BaseEntity{
   @PrimaryGeneratedColumn()
   id: number;
 
