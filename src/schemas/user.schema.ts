@@ -1,10 +1,10 @@
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Role } from "./role.schema";
 import { Notification } from "./notification.schema";
 
 
 @Entity("tbl_user")
-export class User {
+export class User extends BaseEntity{
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -19,6 +19,12 @@ export class User {
 
   @Column()
   password: string;
+
+  @Column()
+  confirmPassword: string;
+
+  @Column()
+  mobileNumber: number;
 
   @Column()
   address: string;

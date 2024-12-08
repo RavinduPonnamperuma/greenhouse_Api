@@ -1,8 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, BaseEntity } from "typeorm";
 import { Device } from "./device.schema";
 
 @Entity("tbl_plant")
-export class Plant {
+export class Plant extends BaseEntity{
   @PrimaryGeneratedColumn()
   id: number;
 

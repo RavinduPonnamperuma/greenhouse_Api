@@ -1,10 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, BaseEntity } from "typeorm";
 import { Device } from "./device.schema";
 import { Schedule } from "./schedule.schema";
 
 
 @Entity("tbl_actuations")
-export class Actuation {
+export class Actuation  extends BaseEntity{
   @PrimaryGeneratedColumn()
   id: number;
 

@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { FindManyOptions, Repository } from "typeorm";
 import { CreateUserDTO, UpdateUserDTO } from "./user.entity";
@@ -67,6 +67,17 @@ export class UsersService {
       totalItems: total,
       data: employees
     };
+  }
+
+  async login(email: string, password: string): Promise<User> {
+    console.log("Login attempt with email:", email, password);
+    const user = await this.userRepository.findOne({ where: { email } });
+    console.log(user);
+    if (!user) {
+      throw new UnauthorizedException('Invalid email or password');
+    }
+
+    return user;
   }
 
 }

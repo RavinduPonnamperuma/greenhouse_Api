@@ -1,9 +1,9 @@
-import { Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Plant } from "./plant.schema";
 import { Device } from "./device.schema";
 
 @Entity("tbl_polytunnel")
-export class Polytunnel {
+export class Polytunnel extends BaseEntity{
   @PrimaryGeneratedColumn()
   id: number;
 
