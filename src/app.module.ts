@@ -9,6 +9,11 @@ import { dataSourceOptions } from "./config/typeorm.config";
 import { EventEmitterModule } from "@nestjs/event-emitter";
 import { MqttService } from "./modules/mqtt/mqtt.service";
 import { UsersModule } from "./modules/users/users.module";
+import { SensorDataService } from './sensor-data/sensor-data.service';
+import {SensorData} from "./schemas/sensor-data.schema";
+import { SocketIoConfig } from "ngx-socket-io";
+import { SensorDataModule } from "./sensor-data/sensor-data.module";
+
 
 @Module({
   imports: [
@@ -20,9 +25,12 @@ import { UsersModule } from "./modules/users/users.module";
     RouterModule.register(routes),
     EventEmitterModule.forRoot(),
     UsersModule,
+    TypeOrmModule.forFeature([SensorData]),
+    SensorDataModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController,],
   providers: [AppService,
-  MqttService],
+  MqttService,
+  SensorDataService],
 })
 export class AppModule {}
