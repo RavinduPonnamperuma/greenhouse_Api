@@ -1,17 +1,19 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, BaseEntity } from "typeorm";
-import { Device } from "./device.schema";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { BaseEntity } from 'typeorm';
+import {Polytunnel} from "./polytunnel.schema";
 
-@Entity("tbl_plant")
-export class Plant extends BaseEntity{
+
+@Entity('tbl_plant' )
+export class Plant extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  plantName: string;
+  PlantName: string;
 
   @Column()
-  status: string;
+  Status: string;
 
-  @OneToMany(() => Device, (device) => device.polytunnel)
-  devices: Device[];
+  @OneToMany(() => Polytunnel, polytunnel => polytunnel.Plant)
+  Polytunnels: Polytunnel[];
 }

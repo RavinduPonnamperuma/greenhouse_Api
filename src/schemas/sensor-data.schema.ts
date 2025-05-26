@@ -9,7 +9,7 @@ export class SensorData {
   topic: string;
 
   @Column('json')
-  data: any;  // Store the sensor data as JSON
+  data: any;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date; // Timestamp for when the data was received
