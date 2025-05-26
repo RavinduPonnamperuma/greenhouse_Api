@@ -66,7 +66,6 @@ export class MqttService implements OnModuleInit {
         try {
             const sensorData = JSON.parse(message);
             this.logger.log(`Received message on topic ${topic}: ${JSON.stringify(sensorData)}`);
-
             console.log(`Received topic ${topic}: ${JSON.stringify(sensorData)}`);
 
         } catch (error) {
