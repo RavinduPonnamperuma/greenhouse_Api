@@ -9,6 +9,7 @@ import {dataSourceOptions} from "./config/typeorm.config";
 import {EventEmitterModule} from "@nestjs/event-emitter";
 import {MqttService} from "./modules/mqtt/mqtt.service";
 import {SensorData} from "./schemas/sensor-data.schema";
+import {SensorDataService} from "./modules/sensor-data/sensor-data.service";
 
 
 @Module({
@@ -26,6 +27,7 @@ import {SensorData} from "./schemas/sensor-data.schema";
     controllers: [AppController,],
     providers: [AppService,
         MqttService,
+        SensorDataService,
     ],
 })
 export class AppModule {
