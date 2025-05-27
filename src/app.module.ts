@@ -11,6 +11,7 @@ import {MqttService} from "./modules/mqtt/mqtt.service";
 import {SensorData} from "./schemas/sensor-data.schema";
 import {SensorDataService} from "./modules/sensor-data/sensor-data.service";
 import {ActionModule} from "./modules/action/action.module";
+import {UsersModule} from "./modules/users/users.module";
 
 
 @Module({
@@ -23,7 +24,8 @@ import {ActionModule} from "./modules/action/action.module";
         RouterModule.register(routes),
         EventEmitterModule.forRoot(),
         TypeOrmModule.forFeature([SensorData]),
-        ActionModule
+        ActionModule,
+        UsersModule
 
     ],
     controllers: [AppController,],

@@ -26,7 +26,7 @@ export class UsersController {
   // Create a new user
   @Post()
   async create(@Body() createUserDTO: CreateUserDTO) {
-    return this.userService.create(createUserDTO);
+    return this.userService.createUser(createUserDTO);
   }
 
   // Get all users with relations
