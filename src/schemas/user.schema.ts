@@ -1,37 +1,46 @@
-import { BaseEntity, Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Role } from "./role.schema";
-import { Notification } from "./notification.schema";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne } from 'typeorm';
+import { BaseEntity } from 'typeorm';
+import {Polytunnel} from "./polytunnel.schema";
+import {Role} from "./role.schema";
+import {Notification} from "./notification.schema";
+import {Actuators} from "./actuator.schema";
 
 
-@Entity("tbl_user")
-export class User extends BaseEntity{
+@Entity( 'tbl_user' )
+export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  firstName: string;
+  FirstName: string;
 
   @Column()
-  lastName: string;
+  LastName: string;
 
   @Column()
-  email: string;
+  Name: string;
 
   @Column()
-  password: string;
+  Email: string;
 
   @Column()
-  confirmPassword: string;
+  Password: string;
 
   @Column()
-  mobileNumber: number;
+  Address: string;
 
   @Column()
-  address: string;
+  Contact: string;
 
-  @ManyToOne(() => Role, (role) => role.users)
-  role: Role;
+  @ManyToOne(() => Role, role => role.users)
+  Role: Role;
 
-  @OneToMany(() => Notification, (notification) => notification.user)
-  notifications: Notification[];
+  @OneToMany(() => Polytunnel, polytunnel => polytunnel.User)
+  Polytunnels: Polytunnel[];
+
+  @OneToMany(() => Notification, notification => notification.User)
+  Notifications: Notification[];
+
+  @OneToMany(() => Actuators, actuator => actuator.User)
+  Actuators: Actuators[];
 }

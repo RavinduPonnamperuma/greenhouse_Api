@@ -1,18 +1,19 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, BaseEntity } from "typeorm";
-import { Device } from "./device.schema";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { BaseEntity } from 'typeorm';
+import {Device} from "./device.schema";
 
 
-@Entity("tbl_device_config")
+@Entity( 'tbl_device_configuration' )
 export class DeviceConfiguration extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  configuration: string;
+  Configuration: string;
 
   @Column()
-  configTimestamp: Date;
+  ConfigTimestamp: Date;
 
-  @ManyToOne(() => Device, (device) => device.configurations)
-  device: Device;
+  @ManyToOne(() => Device, device => device.Configurations)
+  Device: Device;
 }

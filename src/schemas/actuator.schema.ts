@@ -2,26 +2,26 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'ty
 import { BaseEntity } from 'typeorm';
 import {User} from "./user.schema";
 import {Plant} from "./plant.schema";
-import {Device} from "./device.schema";
+import {Actuation} from "./actuation.schema";
 
 
-@Entity( 'tbl_polytunnel' )
-export class Polytunnel extends BaseEntity {
+@Entity( 'tbl_actuators' )
+export class Actuators extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  Name: string;
+  ActuatorName: string;
 
   @Column()
-  Location: string;
+  ActuatorStatus: string;
 
-  @ManyToOne(() => User, user => user.Polytunnels)
+  @ManyToOne(() => User, user => user.Actuators)
   User: User;
 
   @ManyToOne(() => Plant, plant => plant.Polytunnels)
   Plant: Plant;
 
-  @OneToMany(() => Device, device => device.PolyTunnel)
-  Devices: Device[];
+  @OneToMany(() => Actuation, actuation => actuation.Actuator)
+  Actuations: Actuation[];
 }
