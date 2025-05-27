@@ -3,7 +3,7 @@ import { BaseEntity } from 'typeorm';
 import {Actuation} from "./actuation.schema";
 
 
-@Entity({ name: 'tbl_schedule' })
+@Entity( 'tbl_schedule' )
 export class Schedule extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;

@@ -3,7 +3,7 @@ import { BaseEntity } from 'typeorm';
 import {User} from "./user.schema";
 
 
-@Entity({ name: 'tbl_notification' })
+@Entity('tbl_notification' )
 export class Notification extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;

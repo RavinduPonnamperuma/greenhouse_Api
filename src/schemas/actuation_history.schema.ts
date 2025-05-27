@@ -3,7 +3,7 @@ import { BaseEntity } from 'typeorm';
 import {Actuation} from "./actuation.schema";
 
 
-@Entity({ name: 'tbl_actuation_history' })
+@Entity('tbl_actuation_history')
 export class ActuationHistory extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;

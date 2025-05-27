@@ -1,7 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {Entity, PrimaryGeneratedColumn, Column, BaseEntity} from 'typeorm';
 
-@Entity()
-export class SensorData {
+@Entity( 'tbl_sensor_data' )
+export class SensorData extends BaseEntity{
   @PrimaryGeneratedColumn()
   id: number;
 

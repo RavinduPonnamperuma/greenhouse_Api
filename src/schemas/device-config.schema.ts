@@ -3,7 +3,7 @@ import { BaseEntity } from 'typeorm';
 import {Device} from "./device.schema";
 
 
-@Entity({ name: 'tbl_device_configuration' })
+@Entity( 'tbl_device_configuration' )
 export class DeviceConfiguration extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
