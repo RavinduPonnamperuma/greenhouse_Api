@@ -12,5 +12,5 @@ export class SensorData extends BaseEntity{
   data: any;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  createdAt: Date; // Timestamp for when the data was received
+  createdAt: Date;
 }
