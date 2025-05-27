@@ -13,7 +13,7 @@ export class UsersService {
   }
 
   async create(createUserDTO: CreateUserDTO) {
-    return this.userRepository.save(this.userRepository.create(createUserDTO));
+    // return this.userRepository.save(this.userRepository.create(createUserDTO));
   }
 
   async getAll() {
@@ -25,8 +25,8 @@ export class UsersService {
   }
 
   async update(id: number, updateUserDTO: UpdateUserDTO) {
-    await this.userRepository.update(id, updateUserDTO);
-    return this.userRepository.findOneBy({ id });
+    // await this.userRepository.update(id, updateUserDTO);
+    // return this.userRepository.findOneBy({ id });
   }
 
   async find(
@@ -71,7 +71,7 @@ export class UsersService {
 
   async login(email: string, password: string): Promise<User> {
     console.log("Login attempt with email:", email, password);
-    const user = await this.userRepository.findOne({ where: { email } });
+    const user = await this.userRepository.findOne({ where: { Email: email } });
     console.log(user);
     if (!user) {
       throw new UnauthorizedException('Invalid email or password');
