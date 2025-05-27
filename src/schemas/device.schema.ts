@@ -1,29 +1,27 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, BaseEntity } from "typeorm";
-import { Polytunnel } from "./polytunnel.schema";
-import { Sensor } from "./sensor.schema";
-import { Actuation } from "./actuation.schema";
-import { DeviceConfiguration } from "./device-config.schema";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm';
+import { BaseEntity } from 'typeorm';
+import {Polytunnel} from "./polytunnel.schema";
+import {Sensors} from "./sensor.schema";
+import {DeviceConfiguration} from "./device-config.schema";
 
-@Entity("tbl_device")
-export class Device extends BaseEntity{
+
+@Entity( 'tbl_device' )
+export class Device extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  name: string;
+  Status: string;
 
   @Column()
-  status: string;
+  Type: string;
 
-  @ManyToOne(() => Polytunnel, (polytunnel) => polytunnel.id)
-  polytunnel: Polytunnel;
+  @ManyToOne(() => Polytunnel, polytunnel => polytunnel.Devices)
+  PolyTunnel: Polytunnel;
 
-  @OneToMany(() => Sensor, (sensor) => sensor.device)
-  sensors: Sensor[];
+  @OneToMany(() => Sensors, sensors => sensors.Device)
+  Sensors: Sensors[];
 
-  @OneToMany(() => Actuation, (actuation) => actuation.device)
-  actuations: Actuation[];
-
-  @OneToMany(() => DeviceConfiguration, (config) => config.device)
-  configurations: DeviceConfiguration[];
+  @OneToMany(() => DeviceConfiguration, config => config.Device)
+  Configurations: DeviceConfiguration[];
 }

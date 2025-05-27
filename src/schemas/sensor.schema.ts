@@ -1,18 +1,19 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, BaseEntity } from "typeorm";
-import { Device } from "./device.schema";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { BaseEntity } from 'typeorm';
+import {Device} from "./device.schema";
 
 
-@Entity("tbl_sensor")
-export class Sensor extends BaseEntity{
+@Entity( 'tbl_sensors' )
+export class Sensors extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  type: string;
+  DataValue: string;
 
   @Column()
-  location: string;
+  Timestamp: Date;
 
-  @ManyToOne(() => Device, (device) => device.sensors)
-  device: Device;
+  @ManyToOne(() => Device, device => device.Sensors)
+  Device: Device;
 }

@@ -1,7 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {Entity, PrimaryGeneratedColumn, Column, BaseEntity} from 'typeorm';
 
-@Entity()
-export class SensorData {
+@Entity( 'tbl_sensor_data' )
+export class SensorData extends BaseEntity{
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -9,8 +9,8 @@ export class SensorData {
   topic: string;
 
   @Column('json')
-  data: any;  // Store the sensor data as JSON
+  data: any;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  createdAt: Date; // Timestamp for when the data was received
+  createdAt: Date;
 }

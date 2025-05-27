@@ -1,21 +1,19 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, BaseEntity } from "typeorm";
-import { User } from "./user.schema";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { BaseEntity } from 'typeorm';
+import {User} from "./user.schema";
 
 
-@Entity("tbl_notification")
-export class Notification  extends BaseEntity{
+@Entity('tbl_notification' )
+export class Notification extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  message: string;
+  Message: string;
 
   @Column()
-  status: string;
+  Status: string;
 
-  @Column()
-  timestamp: Date;
-
-  @ManyToOne(() => User, (user) => user.notifications)
-  user: User;
+  @ManyToOne(() => User, user => user.Notifications)
+  User: User;
 }
