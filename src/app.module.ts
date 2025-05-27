@@ -10,6 +10,7 @@ import {EventEmitterModule} from "@nestjs/event-emitter";
 import {MqttService} from "./modules/mqtt/mqtt.service";
 import {SensorData} from "./schemas/sensor-data.schema";
 import {SensorDataService} from "./modules/sensor-data/sensor-data.service";
+import {ActionModule} from "./modules/action/action.module";
 
 
 @Module({
@@ -22,6 +23,7 @@ import {SensorDataService} from "./modules/sensor-data/sensor-data.service";
         RouterModule.register(routes),
         EventEmitterModule.forRoot(),
         TypeOrmModule.forFeature([SensorData]),
+        ActionModule
 
     ],
     controllers: [AppController,],

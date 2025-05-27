@@ -89,4 +89,28 @@ export class MqttService implements OnModuleInit {
         await this.sensorDataService.save(sensorData)
     }
 
+    private publish(topic: string, message: string) {
+        if (this.client?.connected) {
+            this.client.publish(topic, message, { qos: 1 }, (err) => {
+                if (err) {
+                    this.logger.error(`Failed to publish to ${topic}: ${err.message}`);
+                } else {
+                    this.logger.log(`Message "${message}" sent to ${topic}`);
+                }
+            });
+        } else {
+            this.logger.warn(`MQTT client not connected. Cannot send to ${topic}`);
+        }
+    }
+
+    turnOnLed(ledNumber: number) {
+        const topic = `esp/1/led${ledNumber}`;
+        this.publish(topic, 'ON');
+    }
+
+    turnOffLed(ledNumber: number) {
+        const topic = `esp/1/led${ledNumber}`;
+        this.publish(topic, 'OFF');
+    }
+
 }

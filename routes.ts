@@ -1,10 +1,11 @@
 import { Routes } from '@nestjs/core';
+import {ActionModule} from "./src/modules/action/action.module";
 
 
 export const routes: Routes = [
-  // {
-  //   path: 'user',
-  //   module: UsersModule,
-  // },
+  {
+    path: 'action',
+    module: ActionModule,
+  },
 
 ];
