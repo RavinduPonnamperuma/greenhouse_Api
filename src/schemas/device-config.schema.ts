@@ -14,6 +14,6 @@ export class DeviceConfiguration extends BaseEntity {
   @Column()
   ConfigTimestamp: Date;
 
-  @ManyToOne(() => Device, device => device.Configurations)
+  @ManyToOne(() => Device, device => device.configurations)
   Device: Device;
 }
