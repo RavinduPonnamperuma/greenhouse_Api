@@ -12,6 +12,8 @@ import {SensorData} from "./schemas/sensor-data.schema";
 import {SensorDataService} from "./modules/sensor-data/sensor-data.service";
 import {ActionModule} from "./modules/action/action.module";
 import {UsersModule} from "./modules/users/users.module";
+import { PolytunnelModule } from "./modules/polytunnel/polytunnel.module";
+
 
 
 @Module({
@@ -25,7 +27,10 @@ import {UsersModule} from "./modules/users/users.module";
         EventEmitterModule.forRoot(),
         TypeOrmModule.forFeature([SensorData]),
         ActionModule,
-        UsersModule
+        UsersModule,
+        PolytunnelModule,
+
+
 
     ],
     controllers: [AppController,],

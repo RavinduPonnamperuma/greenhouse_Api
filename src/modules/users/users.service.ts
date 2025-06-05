@@ -31,7 +31,9 @@ export class UsersService {
             Contact: contact,
             Role: role
         });
+        console.log(user);
         return await this.userRepository.save(user);
+
     }
 
 
