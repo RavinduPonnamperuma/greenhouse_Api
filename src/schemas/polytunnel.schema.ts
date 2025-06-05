@@ -1,27 +1,35 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm';
-import { BaseEntity } from 'typeorm';
-import {User} from "./user.schema";
-import {Plant} from "./plant.schema";
-import {Device} from "./device.schema";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  OneToMany,
+  BaseEntity,
+  OneToOne,
+  JoinColumn,
+} from 'typeorm';
+import { User } from './user.schema';
+import { Device } from './device.schema';
+import { Plant } from './plant.schema';
 
-
-@Entity( 'tbl_polytunnel' )
+@Entity('tbl_polytunnel')
 export class Polytunnel extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  Name: string;
+  name: string;
 
   @Column()
-  Location: string;
+  location: string;
 
   @ManyToOne(() => User, user => user.Polytunnels)
-  User: User;
+  user: User;
 
-  @ManyToOne(() => Plant, plant => plant.Polytunnels)
-  Plant: Plant;
+  @OneToOne(() => Device, device => device.polyTunnel)
+  @JoinColumn()
+  device: Device;
 
-  @OneToMany(() => Device, device => device.PolyTunnel)
-  Devices: Device[];
+  @OneToMany(() => Plant, plant => plant.Polytunnels)
+  plants: Plant[];
 }
