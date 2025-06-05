@@ -14,6 +14,6 @@ export class Plant extends BaseEntity {
   @Column()
   Status: string;
 
-  @OneToMany(() => Polytunnel, polytunnel => polytunnel.Plant)
+  @OneToMany(() => Polytunnel, polytunnel => polytunnel.plants)
   Polytunnels: Polytunnel[];
 }
