@@ -23,5 +23,15 @@ export class SensorDataService {
         return {message: 'Sensor data saved successfully'};
     }
 
+    async getAllSensorData(){
+        const results = await this.sensorDataRepository
+            .createQueryBuilder('sensor')
+            .select('sensor.data', 'data')
+            .getRawMany();
+        return results.map(row => row.data);
+    }
+
+
+
 
 }

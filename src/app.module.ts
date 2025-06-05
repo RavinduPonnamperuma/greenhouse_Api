@@ -13,6 +13,7 @@ import {SensorDataService} from "./modules/sensor-data/sensor-data.service";
 import {ActionModule} from "./modules/action/action.module";
 import {UsersModule} from "./modules/users/users.module";
 import { PolytunnelModule } from "./modules/polytunnel/polytunnel.module";
+import {SensorDataModule} from "./modules/sensor-data/sensor-data.module";
 
 
 
@@ -29,9 +30,7 @@ import { PolytunnelModule } from "./modules/polytunnel/polytunnel.module";
         ActionModule,
         UsersModule,
         PolytunnelModule,
-
-
-
+        SensorDataModule
     ],
     controllers: [AppController,],
     providers: [AppService,
