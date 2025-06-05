@@ -1,6 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { PolytunnelService } from './polytunnel.service';
-import {CreatePolytunnelDto} from "./polytunnel.entity";
+import {CreatePolytunnelDTO} from "./polytunnel.entity";
+
 
 
 @Controller()
@@ -8,8 +9,8 @@ export class PolytunnelController {
   constructor(private readonly polytunnelService: PolytunnelService) {}
 
   @Post()
-  create(@Body() createPolytunnelDto: CreatePolytunnelDto) {
-    return this.polytunnelService.create(createPolytunnelDto);
+  create(@Body() createPolytunnelDto: CreatePolytunnelDTO) {
+    return this.polytunnelService.createPolytunnel(createPolytunnelDto);
   }
 
   @Get()

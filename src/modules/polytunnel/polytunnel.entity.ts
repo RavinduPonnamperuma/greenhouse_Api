@@ -1,11 +1,6 @@
-export class PolytunnelDTO {
+export class CreatePolytunnelDTO {
   name: string;
   location: string;
   userId: number;
-  plantId: number;
-
-
-
-
+  deviceId: number;
 }
-export class CreatePolytunnelDto extends PolytunnelDTO{}
