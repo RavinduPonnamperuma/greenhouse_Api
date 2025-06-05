@@ -19,7 +19,7 @@ export class Actuators extends BaseEntity {
   @ManyToOne(() => User, user => user.Actuators)
   User: User;
 
-  @ManyToOne(() => Plant, plant => plant.Polytunnels)
+  @ManyToOne(() => Plant, plant => plant.polytunnel)
   Plant: Plant;
 
   @OneToMany(() => Actuation, actuation => actuation.Actuator)
