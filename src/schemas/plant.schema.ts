@@ -1,9 +1,13 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import { BaseEntity } from 'typeorm';
-import {Polytunnel} from "./polytunnel.schema";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  BaseEntity,
+} from 'typeorm';
+import { Polytunnel } from './polytunnel.schema';
 
-
-@Entity('tbl_plant' )
+@Entity('tbl_plant')
 export class Plant extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
@@ -14,6 +18,6 @@ export class Plant extends BaseEntity {
   @Column()
   Status: string;
 
-  @OneToMany(() => Polytunnel, polytunnel => polytunnel.plants)
-  Polytunnels: Polytunnel[];
+  @ManyToOne(() => Polytunnel, polytunnel => polytunnel.plants)
+  polytunnel: Polytunnel;
 }
