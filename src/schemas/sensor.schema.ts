@@ -14,6 +14,6 @@ export class Sensors extends BaseEntity {
   @Column()
   Timestamp: Date;
 
-  @ManyToOne(() => Device, device => device.Sensors)
+  @ManyToOne(() => Device, device => device.sensors)
   Device: Device;
 }
