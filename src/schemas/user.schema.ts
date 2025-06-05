@@ -35,7 +35,7 @@ export class User extends BaseEntity {
   @ManyToOne(() => Role, role => role.users)
   Role: Role;
 
-  @OneToMany(() => Polytunnel, polytunnel => polytunnel.User)
+  @OneToMany(() => Polytunnel, polytunnel => polytunnel.user)
   Polytunnels: Polytunnel[];
 
   @OneToMany(() => Notification, notification => notification.User)
