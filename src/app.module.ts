@@ -14,6 +14,7 @@ import {ActionModule} from "./modules/action/action.module";
 import {UsersModule} from "./modules/users/users.module";
 import { PolytunnelModule } from "./modules/polytunnel/polytunnel.module";
 import {SensorDataModule} from "./modules/sensor-data/sensor-data.module";
+import {PlantModule} from "./modules/plant/plant.module";
 
 
 
@@ -30,7 +31,8 @@ import {SensorDataModule} from "./modules/sensor-data/sensor-data.module";
         ActionModule,
         UsersModule,
         PolytunnelModule,
-        SensorDataModule
+        SensorDataModule,
+        PlantModule
     ],
     controllers: [AppController,],
     providers: [AppService,
