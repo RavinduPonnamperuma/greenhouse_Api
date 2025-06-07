@@ -1,5 +1,6 @@
-export class UserDTO {
 
+export class UserDTO {
+ id: number;
   userName: string;
   name: string;
   email: string;
@@ -13,7 +14,20 @@ export class UserDTO {
 export class CreateUserDTO extends UserDTO {}
 export class UpdateUserDTO extends UserDTO {}
 
+// export class FindUserResponseDto {
+//
+//   page: number;
+//   itemsPerPage: number;
+//   totalItems: number;
+//   data: CreateUserDTO[];
+// }
+
+
+
 export class UserLoginDTO{
   email: string;
   password: string;
+}
+export class LoginResponseDto {
+  user: UserDTO;
 }

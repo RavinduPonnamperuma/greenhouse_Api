@@ -8,15 +8,15 @@ export class UsersController {
   constructor(private readonly userService: UsersService) {
   }
 // Search for users by firstName and lastName with pagination
-  @Get('find')
-  async find(
-    @Query("firstName") firstName: string,
-    @Query("lastName") lastName: string,
-    @Query("pageNumber") pageNumber: number = 1,
-    @Query("itemsPerPage") itemsPerPage: number = 10
-  ) {
-    return this.userService.find(firstName, lastName, pageNumber, itemsPerPage);
-  }
+//   @Get('find')
+//   async find(
+//     @Query("firstName") firstName: string,
+//     @Query("lastName") lastName: string,
+//     @Query("pageNumber") pageNumber: number = 1,
+//     @Query("itemsPerPage") itemsPerPage: number = 10
+//   ) {
+//     return this.userService.find(firstName, lastName, pageNumber, itemsPerPage);
+//   }
 
   // Get a single user by ID
   @Get(":id")
@@ -42,11 +42,18 @@ export class UsersController {
     return this.userService.update(id, updateUserDTO);
   }
 
+
+
   // login
+  // @Post('login')
+  // async login(@Body()dto:UserLoginDTO
+  // ) {
+  //  // return await this.userService.login(dto)
+  // }
+
   @Post('login')
-  async login(@Body()dto:UserLoginDTO
-  ) {
-   // return await this.userService.login(dto)
+  async login(@Body() loginDto: UserLoginDTO) {
+    return await this.userService.login(loginDto.email, loginDto.password);
   }
 
 
