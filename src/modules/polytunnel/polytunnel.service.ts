@@ -6,49 +6,40 @@ import {User} from "../../schemas/user.schema";
 import {Device} from "../../schemas/device.schema";
 import {CreatePolytunnelDTO} from "./polytunnel.entity";
 
+
 @Injectable()
 export class PolytunnelService {
     constructor(
         @InjectRepository(Polytunnel)
         private polytunnelRepository: Repository<Polytunnel>,
-        @InjectRepository(User)
-        private userRepository: Repository<User>,
         @InjectRepository(Device)
         private deviceRepository: Repository<Device>,
     ) {
     }
 
-    async createPolytunnel(dto: CreatePolytunnelDTO) {
-        const user = await this.userRepository.findOne({where: {id: dto.userId}});
-        if (!user) {
-            throw new Error('User not found');
+    async savePolytunnel(dto: CreatePolytunnelDTO) {
+        const polytunnel = new Polytunnel();
+        polytunnel.code = dto.code;
+        polytunnel.status = dto.status;
+        polytunnel.location = dto.location;
+        polytunnel.size = dto.size;
+        polytunnel.length = dto.length;
+        polytunnel.width = dto.width;
+        polytunnel.numberOfPlants = dto.numberOfPlants;
+
+        if (dto.userId) {
+            polytunnel.user = { id: dto.userId } as User;
+        } else {
+            polytunnel.user = null;
         }
-        const device = await this.deviceRepository.findOne({where: {id: dto.deviceId}});
-        if (!device) {
-            throw new Error('Device not found');
+
+        if (dto.deviceId) {
+            polytunnel.device = { id: dto.deviceId } as Device;
+        } else {
+            polytunnel.device = null;
         }
-        // const polytunnel = this.polytunnelRepository.create({
-        //     name: dto.name,
-        //     location: dto.location,
-        //     user,
-        //     device,
-        // });
-        // return await this.polytunnelRepository.save(polytunnel);
+
+        return await this.polytunnelRepository.save(polytunnel);
     }
 
-    findAll() {
-        return `This action returns all polytunnel`;
-    }
-
-    findOne(id: number) {
-        return `This action returns a #${id} polytunnel`;
-    }
-
-    // update(id: number, updatePolytunnelDto: UpdatePolytunnelDto) {
-    //   return `This action updates a #${id} polytunnel`;
-    // }
-
-    remove(id: number) {
-        return `This action removes a #${id} polytunnel`;
-    }
 }

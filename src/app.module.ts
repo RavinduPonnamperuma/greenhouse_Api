@@ -28,9 +28,9 @@ import {PlantModule} from "./modules/plant/plant.module";
         EventEmitterModule.forRoot(),
         ActionModule,
         UsersModule,
-        PolytunnelModule,
         SensorDataModule,
-        PlantModule
+        PlantModule,
+        PolytunnelModule
     ],
     controllers: [AppController,],
     providers: [AppService,

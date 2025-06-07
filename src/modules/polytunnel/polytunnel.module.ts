@@ -9,6 +9,6 @@ import {Device} from "../../schemas/device.schema";
 @Module({
   controllers: [PolytunnelController],
   providers: [PolytunnelService],
-  imports: [TypeOrmModule.forFeature([Polytunnel,User,Device])],
+  imports: [TypeOrmModule.forFeature([Polytunnel,Device])],
 })
 export class PolytunnelModule {}
