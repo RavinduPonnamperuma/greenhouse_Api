@@ -14,13 +14,13 @@ export class SensorDataService {
     }
 
     async save(sensorData: SensorDataDTO) {
-        const {topic, data} = sensorData;
-        const newRecord = this.sensorDataRepository.create({
-            topic,
-            data,
-        });
-        await this.sensorDataRepository.save(newRecord);
-        return {message: 'Sensor data saved successfully'};
+        // const {topic, data} = sensorData;
+        // const newRecord = this.sensorDataRepository.create({
+        //     topic,
+        //     data,
+        // });
+        // await this.sensorDataRepository.save(newRecord);
+        // return {message: 'Sensor data saved successfully'};
     }
 
     async getAllSensorData(){
