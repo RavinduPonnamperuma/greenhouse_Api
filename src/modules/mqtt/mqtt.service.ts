@@ -7,6 +7,12 @@ export class MqttService implements OnModuleInit {
     private client: mqtt.MqttClient;
     private readonly logger = new Logger(MqttService.name);
 
+     sensorMapping = {
+        humidity: 1,
+        moisture: 2,
+        temperature: 3
+    };
+
     constructor(
         private sensorDataService: SensorDataService
     ) {
@@ -73,20 +79,18 @@ export class MqttService implements OnModuleInit {
                 topic,
                 data: sensorData,
             };
-            await this.saveSensorData(topic, sensorData);
+
+            //save line
+            // await this.saveSensorData(topic, sensorData);
         } catch (error) {
             this.logger.error(`Failed to parse message on topic ${message}`);
         }
     }
 
     async saveSensorData(topic: string, data: any) {
-        const sensorMapping = {
-            humidity: 1,
-            moisture: 2,
-            temperature: 3
-        };
+
         for (const key of Object.keys(data)) {
-            const sensorId = sensorMapping[key];
+            const sensorId = this.sensorMapping[key];
             if (sensorId !== undefined) {
                 const sensorData = {
                     topic: key,
