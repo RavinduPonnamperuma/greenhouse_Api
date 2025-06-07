@@ -1,10 +1,4 @@
-import {
-    Entity,
-    PrimaryGeneratedColumn,
-    Column,
-    ManyToOne,
-    BaseEntity, OneToMany
-} from 'typeorm';
+import {BaseEntity, Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
 import {Polytunnel} from "./polytunnel.schema";
 import {WaterTankHistory} from "./water-tank-history.schema";
 

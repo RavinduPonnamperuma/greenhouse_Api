@@ -1,9 +1,8 @@
-import { Module } from '@nestjs/common';
-import { PolytunnelService } from './polytunnel.service';
-import { PolytunnelController } from './polytunnel.controller';
-import { TypeOrmModule } from "@nestjs/typeorm";
-import { Polytunnel } from "../../schemas/polytunnel.schema";
-import {User} from "../../schemas/user.schema";
+import {Module} from '@nestjs/common';
+import {PolytunnelService} from './polytunnel.service';
+import {PolytunnelController} from './polytunnel.controller';
+import {TypeOrmModule} from "@nestjs/typeorm";
+import {Polytunnel} from "../../schemas/polytunnel.schema";
 import {Device} from "../../schemas/device.schema";
 
 @Module({

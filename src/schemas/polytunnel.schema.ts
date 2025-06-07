@@ -1,13 +1,4 @@
-import {
-    Entity,
-    PrimaryGeneratedColumn,
-    Column,
-    ManyToOne,
-    OneToMany,
-    BaseEntity,
-    OneToOne,
-    JoinColumn, BeforeInsert, getRepository,
-} from 'typeorm';
+import {BaseEntity, Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn,} from 'typeorm';
 import {User} from './user.schema';
 import {Device} from './device.schema';
 import {Plant} from './plant.schema';

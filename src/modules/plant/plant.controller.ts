@@ -1,5 +1,5 @@
 import {Body, Controller, Post} from '@nestjs/common';
-import {CreatePlantDTO, PlantService} from './plant.service';
+import {PlantService} from './plant.service';
 import {CreatePlantDto} from "./plant.entity";
 
 @Controller()

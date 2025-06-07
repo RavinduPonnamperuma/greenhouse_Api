@@ -1,11 +1,5 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  ManyToOne,
-  BaseEntity, OneToMany,
-} from 'typeorm';
-import { Polytunnel } from './polytunnel.schema';
+import {BaseEntity, Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn,} from 'typeorm';
+import {Polytunnel} from './polytunnel.schema';
 import {Harvest} from "./harvest.schema";
 import {Irrigation} from "./irrigration.schema";
 import {PlantSchedule} from "./schedule.schema";

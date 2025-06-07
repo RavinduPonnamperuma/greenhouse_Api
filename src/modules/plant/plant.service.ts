@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import {Injectable} from '@nestjs/common';
 import {Plant} from "../../schemas/plant.schema";
 import {Polytunnel} from "../../schemas/polytunnel.schema";
 import {Repository} from "typeorm";

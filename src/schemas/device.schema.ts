@@ -1,13 +1,6 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  OneToOne,
-  OneToMany,
-  BaseEntity
-} from 'typeorm';
-import { Polytunnel } from './polytunnel.schema';
-import { Sensors } from './sensor.schema';
+import {BaseEntity, Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn} from 'typeorm';
+import {Polytunnel} from './polytunnel.schema';
+import {Sensors} from './sensor.schema';
 
 @Entity('tbl_device')
 export class Device extends BaseEntity {

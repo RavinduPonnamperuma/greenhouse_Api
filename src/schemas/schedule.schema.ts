@@ -1,12 +1,6 @@
-import {
-    Entity,
-    PrimaryGeneratedColumn,
-    Column,
-    ManyToOne,
-    BaseEntity
-} from 'typeorm';
-import { Plant } from './plant.schema';
-import { Irrigation } from './irrigration.schema';
+import {BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn} from 'typeorm';
+import {Plant} from './plant.schema';
+import {Irrigation} from './irrigration.schema';
 
 @Entity('tbl_irrigation_schedule')
 export class PlantSchedule extends BaseEntity {

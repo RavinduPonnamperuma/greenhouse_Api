@@ -1,6 +1,4 @@
-import {Injectable, NotFoundException, UnauthorizedException} from "@nestjs/common";
-import {InjectRepository} from "@nestjs/typeorm";
-import {FindManyOptions, Repository} from "typeorm";
+import {Injectable} from "@nestjs/common";
 import {CreateUserDTO, UpdateUserDTO} from "./user.entity";
 
 

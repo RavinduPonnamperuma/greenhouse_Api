@@ -1,12 +1,10 @@
 import {Injectable, NotFoundException} from '@nestjs/common';
 import {SensorData} from "../../schemas/sensor-data.schema";
-import {Repository} from "typeorm";
+import {Between, Repository} from "typeorm";
 import {InjectRepository} from "@nestjs/typeorm";
 import {Sensors} from "../../schemas/sensor.schema";
 import {CreateSensorDataDTO} from "./sensor_data.entity";
-import { Between } from 'typeorm';
 import * as moment from 'moment';
-
 
 
 @Injectable()

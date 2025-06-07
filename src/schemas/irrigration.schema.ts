@@ -1,11 +1,5 @@
-import {
-    Entity,
-    PrimaryGeneratedColumn,
-    Column,
-    ManyToOne,
-    BaseEntity, OneToMany
-} from 'typeorm';
-import { Plant } from './plant.schema';
+import {BaseEntity, Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
+import {Plant} from './plant.schema';
 import {PlantSchedule} from "./schedule.schema";
 
 @Entity('tbl_irrigation')

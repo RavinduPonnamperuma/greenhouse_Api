@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsNumber, IsOptional, IsInt } from 'class-validator';
+import {IsInt, IsNotEmpty, IsNumber, IsOptional, IsString} from 'class-validator';
 
 export class CreateSensorDataDTO {
     @IsString()

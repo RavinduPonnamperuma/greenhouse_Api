@@ -1,6 +1,6 @@
-import { Module } from '@nestjs/common';
-import { SensorDataService } from './sensor-data.service';
-import { SensorDataController } from './sensor-data.controller';
+import {Module} from '@nestjs/common';
+import {SensorDataService} from './sensor-data.service';
+import {SensorDataController} from './sensor-data.controller';
 import {TypeOrmModule} from "@nestjs/typeorm";
 import {Sensors} from "../../schemas/sensor.schema";
 import {SensorData} from "../../schemas/sensor-data.schema";

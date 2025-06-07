@@ -1,11 +1,5 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  ManyToOne,
-  BaseEntity
-} from 'typeorm';
-import { Sensors } from './sensor.schema';
+import {BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn} from 'typeorm';
+import {Sensors} from './sensor.schema';
 
 @Entity('tbl_sensor_data')
 export class SensorData extends BaseEntity {

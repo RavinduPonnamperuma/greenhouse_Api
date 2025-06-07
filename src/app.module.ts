@@ -8,13 +8,11 @@ import {routes} from "../routes";
 import {dataSourceOptions} from "./config/typeorm.config";
 import {EventEmitterModule} from "@nestjs/event-emitter";
 import {MqttService} from "./modules/mqtt/mqtt.service";
-import {SensorDataService} from "./modules/sensor-data/sensor-data.service";
 import {ActionModule} from "./modules/action/action.module";
 import {UsersModule} from "./modules/users/users.module";
-import { PolytunnelModule } from "./modules/polytunnel/polytunnel.module";
+import {PolytunnelModule} from "./modules/polytunnel/polytunnel.module";
 import {SensorDataModule} from "./modules/sensor-data/sensor-data.module";
 import {PlantModule} from "./modules/plant/plant.module";
-
 
 
 @Module({

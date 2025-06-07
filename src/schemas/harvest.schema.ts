@@ -1,11 +1,5 @@
-import {
-    Entity,
-    PrimaryGeneratedColumn,
-    Column,
-    ManyToOne,
-    BaseEntity,
-} from 'typeorm';
-import { Plant } from './plant.schema';
+import {BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn,} from 'typeorm';
+import {Plant} from './plant.schema';
 
 @Entity('tbl_harvest')
 export class Harvest extends BaseEntity {

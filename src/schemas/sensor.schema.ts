@@ -1,12 +1,5 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  ManyToOne,
-  OneToMany,
-  BaseEntity
-} from 'typeorm';
-import { Device } from './device.schema';
+import {BaseEntity, Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
+import {Device} from './device.schema';
 import {SensorData} from "./sensor-data.schema";
 
 
