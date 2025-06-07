@@ -1,11 +1,15 @@
-import { IsString, IsNotEmpty, IsObject } from 'class-validator';
+import { IsString, IsNotEmpty, IsNumber, IsOptional, IsInt } from 'class-validator';
 
-export class SensorDataDTO {
+export class CreateSensorDataDTO {
     @IsString()
     @IsNotEmpty()
     topic: string;
 
-    @IsObject()
+    @IsNumber()
     @IsNotEmpty()
-    data: Record<string, any>;
+    value: number;
+
+    @IsOptional()
+    @IsInt()
+    sensorId?: number;
 }
