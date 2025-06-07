@@ -27,13 +27,13 @@ export class PolytunnelService {
         if (!device) {
             throw new Error('Device not found');
         }
-        const polytunnel = this.polytunnelRepository.create({
-            name: dto.name,
-            location: dto.location,
-            user,
-            device,
-        });
-        return await this.polytunnelRepository.save(polytunnel);
+        // const polytunnel = this.polytunnelRepository.create({
+        //     name: dto.name,
+        //     location: dto.location,
+        //     user,
+        //     device,
+        // });
+        // return await this.polytunnelRepository.save(polytunnel);
     }
 
     findAll() {

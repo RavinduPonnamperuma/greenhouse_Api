@@ -25,13 +25,13 @@ export class PlantService {constructor(
         if (!polytunnel) {
             throw new Error('Polytunnel not found');
         }
-        const plant = this.plantRepository.create({
-            PlantName: dto.plantName,
-            Status: dto.status,
-            polytunnel: polytunnel,
-        });
-
-        return await this.plantRepository.save(plant);
+        // const plant = this.plantRepository.create({
+        //     PlantName: dto.plantName,
+        //     Status: dto.status,
+        //     polytunnel: polytunnel,
+        // });
+        //
+        // return await this.plantRepository.save(plant);
     }
 
 }
