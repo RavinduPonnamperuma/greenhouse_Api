@@ -4,6 +4,9 @@ import {Repository} from "typeorm";
 import {InjectRepository} from "@nestjs/typeorm";
 import {Sensors} from "../../schemas/sensor.schema";
 import {CreateSensorDataDTO} from "./sensor_data.entity";
+import { Between } from 'typeorm';
+import * as moment from 'moment';
+
 
 
 @Injectable()
@@ -33,12 +36,16 @@ export class SensorDataService {
         return await this.sensorDataRepository.save(sensorData);
     }
 
-    async getAllSensorData() {
-        const results = await this.sensorDataRepository
-            .createQueryBuilder('sensor')
-            .select('sensor.data', 'data')
-            .getRawMany();
-        return results.map(row => row.data);
+    async getAllSensorData(topic:string) {
+        const startOfDay = moment().startOf('day').toDate();
+        const endOfDay = moment().endOf('day').toDate();
+        return await this.sensorDataRepository.find({
+            where: {
+                topic,
+                createdAt: Between(startOfDay, endOfDay),
+            },
+            order: { createdAt: 'DESC' },
+        });
     }
 
 }

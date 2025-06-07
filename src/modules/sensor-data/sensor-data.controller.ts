@@ -1,4 +1,4 @@
-import {Controller, Get} from '@nestjs/common';
+import {Controller, Get, Query} from '@nestjs/common';
 import {SensorDataService} from './sensor-data.service';
 
 @Controller()
@@ -7,7 +7,9 @@ export class SensorDataController {
     }
 
     @Get()
-    async findAll() {
-        return await this.sensorDataService.getAllSensorData()
+    async findAll(
+        @Query('topic')topic: string,
+    ) {
+        return await this.sensorDataService.getAllSensorData(topic)
     }
 }
