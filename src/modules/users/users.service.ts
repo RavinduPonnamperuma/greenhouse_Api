@@ -1,36 +1,31 @@
-import {Injectable} from "@nestjs/common";
-import {CreateUserDTO, UpdateUserDTO} from "./user.entity";
+import {Injectable, NotFoundException, UnauthorizedException} from "@nestjs/common";
+import {InjectRepository} from "@nestjs/typeorm";
+import {FindManyOptions, Repository} from "typeorm";
+import { CreateUserDTO, UpdateUserDTO, UserDTO } from "./user.entity";
+import { User } from "../../schemas/user.schema";
 
 
 @Injectable()
 export class UsersService {
 
     constructor(
-        // @InjectRepository(User) private userRepository: Repository<User>,
-        // @InjectRepository(Role) private roleRepository: Repository<Role>
-    ) {
-    }
+        @InjectRepository(User) private userRepository: Repository<User>,
+    ) {}
 
-    async createUser(createUserDto: CreateUserDTO) {
-        // const {firstName, lastName, email, password, address, contact, roleId} = createUserDto;
-        //
-        // // const role = await this.roleRepository.findOne({where: {id: roleId}});
-        // if (!role) {
-        //     throw new NotFoundException('Role not found');
-        // }
-        // const user = this.userRepository.create({
-        //     FirstName: firstName,
-        //     LastName: lastName,
-        //     Name: `${firstName} ${lastName}`,
-        //     Email: email,
-        //     Password: password,
-        //     Address: address,
-        //     Contact: contact,
-        //     Role: role
-        // });
-        // console.log(user);
-        // return await this.userRepository.save(user);
+    async createUser(UserDto: CreateUserDTO) {
+        const {userName, name, email, address,password, contact, role,} = UserDto;
+       const user = this.userRepository.create({
+           userName,
+           name,
+           email,
+           password,
+           address,
+           contact,
+           status:'active',
 
+       })
+        console.log(user);
+        return await this.userRepository.save(user);
     }
 
 
