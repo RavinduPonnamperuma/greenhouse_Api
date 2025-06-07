@@ -101,7 +101,6 @@ export class MqttService implements OnModuleInit {
     }
 
 
-
     private publish(topic: string, message: string) {
         if (this.client?.connected) {
             this.client.publish(topic, message, { qos: 1 }, (err) => {
