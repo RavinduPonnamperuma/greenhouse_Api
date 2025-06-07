@@ -1,5 +1,6 @@
 import {Body, Controller, Post} from '@nestjs/common';
 import {CreatePlantDTO, PlantService} from './plant.service';
+import {CreatePlantDto} from "./plant.entity";
 
 @Controller()
 export class PlantController {
@@ -8,8 +9,8 @@ export class PlantController {
 
 
   @Post()
-  async save(@Body() plant: CreatePlantDTO) {
-    return this.plantService.createPlant(plant)
+  async save(@Body() plant: CreatePlantDto) {
+    return this.plantService.savePlant(plant)
   }
 
 }
