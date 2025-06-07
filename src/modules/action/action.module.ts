@@ -7,8 +7,8 @@ import {TypeOrmModule} from "@nestjs/typeorm";
 import {SensorData} from "../../schemas/sensor-data.schema";
 
 @Module({
-  imports: [TypeOrmModule.forFeature([SensorData])],
+  // imports: [TypeOrmModule.forFeature([SensorData])],
   controllers: [ActionController],
-  providers: [ActionService,SensorDataService, MqttService],
+  providers: [ActionService],
 })
 export class ActionModule {}

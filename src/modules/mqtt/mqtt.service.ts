@@ -1,13 +1,17 @@
 import {Injectable, OnModuleInit, Logger} from '@nestjs/common';
 import * as mqtt from 'mqtt';
 import {SensorDataService} from "../sensor-data/sensor-data.service";
-import dataSource from "../../config/typeorm.config";
-import {SensorDataDTO} from "../sensor-data/sensor_data.entity";
 
 @Injectable()
 export class MqttService implements OnModuleInit {
     private client: mqtt.MqttClient;
     private readonly logger = new Logger(MqttService.name);
+
+     sensorMapping = {
+        humidity: 1,
+        moisture: 2,
+        temperature: 3
+    };
 
     constructor(
         private sensorDataService: SensorDataService
@@ -75,19 +79,31 @@ export class MqttService implements OnModuleInit {
                 topic,
                 data: sensorData,
             };
-            await this.saveSensorData(topic, sensorData);
+
+            //save line
+            // await this.saveSensorData(topic, sensorData);
         } catch (error) {
             this.logger.error(`Failed to parse message on topic ${message}`);
         }
     }
 
-    async saveSensorData(topic:string,data:any) {
-        const sensorData = {
-            topic,
-            data: data,
-        };
-        await this.sensorDataService.save(sensorData)
+    async saveSensorData(topic: string, data: any) {
+
+        for (const key of Object.keys(data)) {
+            const sensorId = this.sensorMapping[key];
+            if (sensorId !== undefined) {
+                const sensorData = {
+                    topic: key,
+                    sensorId,
+                    value: data[key]
+                };
+                await this.sensorDataService.saveSensorData(sensorData);
+            } else {
+                console.warn(`Unknown sensor key: ${key}`);
+            }
+        }
     }
+
 
     private publish(topic: string, message: string) {
         if (this.client?.connected) {

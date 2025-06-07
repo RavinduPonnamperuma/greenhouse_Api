@@ -8,11 +8,11 @@ export class ActionController {
 
     @Get('off')
     async turnOff() {
-        return  await this.actionService.turnOff(2)
+        // return  await this.actionService.turnOff(2)
     }
 
     @Get()
     async turnOn() {
-       return  await this.actionService.turnOn(3)
+       // return  await this.actionService.turnOn(3)
     }
 }
