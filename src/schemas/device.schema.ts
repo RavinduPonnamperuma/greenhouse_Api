@@ -7,8 +7,9 @@ import {
   BaseEntity
 } from 'typeorm';
 import { Polytunnel } from './polytunnel.schema';
-import { Sensors } from './sensor.schema';
-import { DeviceConfiguration } from './device-config.schema';
+import {Sensors} from "./sensor.schema";
+
+
 
 @Entity('tbl_device')
 export class Device extends BaseEntity {
@@ -19,7 +20,7 @@ export class Device extends BaseEntity {
   status: string;
 
   @Column()
-  type: string;
+  code: string;
 
   @OneToOne(() => Polytunnel, polytunnel => polytunnel.device)
   polyTunnel: Polytunnel;
@@ -27,6 +28,4 @@ export class Device extends BaseEntity {
   @OneToMany(() => Sensors, sensors => sensors.Device)
   sensors: Sensors[];
 
-  @OneToMany(() => DeviceConfiguration, config => config.Device)
-  configurations: DeviceConfiguration[];
 }
