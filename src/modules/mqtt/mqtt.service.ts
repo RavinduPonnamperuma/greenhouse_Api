@@ -1,8 +1,6 @@
 import {Injectable, OnModuleInit, Logger} from '@nestjs/common';
 import * as mqtt from 'mqtt';
 import {SensorDataService} from "../sensor-data/sensor-data.service";
-import dataSource from "../../config/typeorm.config";
-import {SensorDataDTO} from "../sensor-data/sensor_data.entity";
 
 @Injectable()
 export class MqttService implements OnModuleInit {
@@ -81,13 +79,28 @@ export class MqttService implements OnModuleInit {
         }
     }
 
-    async saveSensorData(topic:string,data:any) {
-        const sensorData = {
-            topic,
-            data: data,
+    async saveSensorData(topic: string, data: any) {
+        const sensorMapping = {
+            humidity: 1,
+            moisture: 2,
+            temperature: 3
         };
-        await this.sensorDataService.save(sensorData)
+        for (const key of Object.keys(data)) {
+            const sensorId = sensorMapping[key];
+            if (sensorId !== undefined) {
+                const sensorData = {
+                    topic: key,
+                    sensorId,
+                    value: data[key]
+                };
+                await this.sensorDataService.saveSensorData(sensorData);
+            } else {
+                console.warn(`Unknown sensor key: ${key}`);
+            }
+        }
     }
+
+
 
     private publish(topic: string, message: string) {
         if (this.client?.connected) {
