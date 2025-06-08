@@ -13,6 +13,7 @@ import {UsersModule} from "./modules/users/users.module";
 import {PolytunnelModule} from "./modules/polytunnel/polytunnel.module";
 import {SensorDataModule} from "./modules/sensor-data/sensor-data.module";
 import {PlantModule} from "./modules/plant/plant.module";
+import { WaterTankModule } from "./modules/water-tank/water-tank.module";
 
 
 @Module({
@@ -28,7 +29,8 @@ import {PlantModule} from "./modules/plant/plant.module";
         UsersModule,
         SensorDataModule,
         PlantModule,
-        PolytunnelModule
+        PolytunnelModule,
+        WaterTankModule,
     ],
     controllers: [AppController,],
     providers: [AppService,
