@@ -11,7 +11,7 @@ export class PolytunnelController {
 
   @HttpCode(HttpStatus.CREATED)
   async create(@Body() createPolytunnelDto: CreatePolytunnelDTO): Promise<Polytunnel> {
-    return await this.polytunnelService.create(createPolytunnelDto);
+    return await this.polytunnelService.savePolytunnel(createPolytunnelDto);
   }
 
   // @Get()
