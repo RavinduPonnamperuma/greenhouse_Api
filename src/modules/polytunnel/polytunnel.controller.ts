@@ -1,15 +1,17 @@
-import {Body, Controller, Post} from '@nestjs/common';
+import {Body, Controller, Post,HttpCode,HttpStatus} from '@nestjs/common';
 import {PolytunnelService} from './polytunnel.service';
 import {CreatePolytunnelDTO} from "./polytunnel.entity";
+import {Polytunnel} from "../../schemas/polytunnel.schema";
 
 
 @Controller()
 export class PolytunnelController {
   constructor(private readonly polytunnelService: PolytunnelService) {}
-
   @Post()
-  async savePolytunnel(@Body() body: CreatePolytunnelDTO) {
-    return await this.polytunnelService.savePolytunnel(body);
+
+  @HttpCode(HttpStatus.CREATED)
+  async create(@Body() createPolytunnelDto: CreatePolytunnelDTO): Promise<Polytunnel> {
+    return await this.polytunnelService.create(createPolytunnelDto);
   }
 
   // @Get()
