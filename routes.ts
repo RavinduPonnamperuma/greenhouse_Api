@@ -31,6 +31,19 @@ export const routes: Routes = [
   {
     path: 'watertank',
     module: WaterTankModule,
+  },
+  {
+    path: 'harvests',
+    module: WaterTankModule,
+  },
+  {
+    path: 'irigation',
+    module: WaterTankModule,
+  },
+  {
+    path: 'device',
+    module: WaterTankModule,
   }
+
 
 ];

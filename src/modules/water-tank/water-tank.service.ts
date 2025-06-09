@@ -8,7 +8,11 @@ import {UpdateWaterTankDto} from "./water-tank.entity";
 
 @Injectable()
 export class WaterTankService {
-constructor(@InjectRepository(WaterTank) private waterTankRepository: Repository<WaterTank>,@InjectRepository(Polytunnel)
+constructor(
+  @InjectRepository(WaterTank)
+  private waterTankRepository: Repository<WaterTank>,
+  @InjectRepository(Polytunnel)
+
 private polytunnelRepository: Repository<Polytunnel>, ) {}
   async create(dto: CreateWaterTankDto): Promise<WaterTank> {
     const waterTank = new WaterTank();

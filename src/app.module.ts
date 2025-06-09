@@ -14,6 +14,9 @@ import {PolytunnelModule} from "./modules/polytunnel/polytunnel.module";
 import {SensorDataModule} from "./modules/sensor-data/sensor-data.module";
 import {PlantModule} from "./modules/plant/plant.module";
 import { WaterTankModule } from "./modules/water-tank/water-tank.module";
+import { HarvestModule } from "./modules/harvest/harvest.module";
+import { IrrigationModule } from "./modules/irrigation/irrigation.module";
+import { DeviceModule } from "./modules/device/device.module";
 
 
 @Module({
@@ -31,6 +34,9 @@ import { WaterTankModule } from "./modules/water-tank/water-tank.module";
         PlantModule,
         PolytunnelModule,
         WaterTankModule,
+        HarvestModule,
+        IrrigationModule,
+        DeviceModule
     ],
     controllers: [AppController,],
     providers: [AppService,
