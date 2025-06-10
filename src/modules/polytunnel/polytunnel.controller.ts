@@ -1,4 +1,4 @@
-import {Body, Controller, Post,HttpCode,HttpStatus} from '@nestjs/common';
+import {Body, Controller, Post, HttpCode, HttpStatus, Get} from '@nestjs/common';
 import {PolytunnelService} from './polytunnel.service';
 import {CreatePolytunnelDTO} from "./polytunnel.entity";
 import {Polytunnel} from "../../schemas/polytunnel.schema";
@@ -8,13 +8,19 @@ import {Polytunnel} from "../../schemas/polytunnel.schema";
 export class PolytunnelController {
   constructor(private readonly polytunnelService: PolytunnelService) {}
   @Post()
-
-  @HttpCode(HttpStatus.CREATED)
   async create(@Body() createPolytunnelDto: CreatePolytunnelDTO): Promise<Polytunnel> {
     return await this.polytunnelService.savePolytunnel(createPolytunnelDto);
   }
 
-
+  @Get()
+  findAll() {
+    return this.polytunnelService.getAllPolytunnels();
+  }
+  //
+  // @Get(':id')
+  // findOne(@Param('id') id: string) {
+  //   return this.polytunnelService.findOne(+id);
+  // }
 
   // @Patch(':id')
   // update(@Param('id') id: string, @Body() updatePolytunnelDto: UpdatePolytunnelDto) {

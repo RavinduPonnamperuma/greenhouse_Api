@@ -26,8 +26,8 @@ export class PolytunnelService {
         polytunnel.length = dto.length;
         polytunnel.width = dto.width;
         polytunnel.numberOfPlants = dto.numberOfPlants;
-        polytunnel.user = { id: dto.userId } as User;
-        polytunnel.device = { id: dto.deviceId } as Device;
+        polytunnel.user = {id: dto.userId} as User;
+        polytunnel.device = {id: dto.deviceId} as Device;
 
         // if (dto.userId) {
         //     polytunnel.user = { id: dto.userId } as User;
@@ -42,6 +42,11 @@ export class PolytunnelService {
         // }
 
         return await this.polytunnelRepository.save(polytunnel);
+    }
+
+
+    async getAllPolytunnels() {
+        return await this.polytunnelRepository.find();
     }
 
 }
