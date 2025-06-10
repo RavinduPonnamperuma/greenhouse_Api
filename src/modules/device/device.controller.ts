@@ -13,10 +13,6 @@ export class DeviceController {
     return this.deviceService.create(createDeviceDto);
   }
 
-  @Get()
-  findAll() {
-    return this.deviceService.findAll();
-  }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
@@ -31,10 +27,15 @@ export class DeviceController {
     return this.deviceService.update(id, updateDeviceDto);
   }
 
-
-
+  
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.deviceService.remove(+id);
   }
+
+  @Get()
+  findAll() {
+    return this.deviceService.findAll();
+  }
+
 }
