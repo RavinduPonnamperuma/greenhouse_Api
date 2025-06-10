@@ -7,14 +7,14 @@ export class IrrigationController {
   constructor(private readonly irrigationService: IrrigationService) {}
 
   @Post()
-  create(@Body() dto: CreateIrrigationDto) {
-    return this.irrigationService.create(dto);
+  create(@Body() createDto: CreateIrrigationDto) {
+    return this.irrigationService.create(createDto);
   }
 
   @Get()
   findAll() {
     return this.irrigationService.findAll();
-  }7
+  }
 
   @Get(':id')
   findOne(@Param('id') id: number) {

@@ -81,7 +81,7 @@ export class MqttService implements OnModuleInit {
             };
 
             //save line
-            // await this.saveSensorData(topic, sensorData);
+            await this.saveSensorData(topic, sensorData);
         } catch (error) {
             this.logger.error(`Failed to parse message on topic ${message}`);
         }

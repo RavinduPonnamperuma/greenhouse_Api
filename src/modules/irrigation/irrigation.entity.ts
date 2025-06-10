@@ -1,12 +1,16 @@
+
+
 export class CreateIrrigationDto {
+
   waterPerDay: number;
   fertilizerPerDay: number;
   timesPerDay: number;
-  isMorning?: boolean;
+  isMorning: boolean;
   morningTime?: string;
-  isEvening?: boolean;
+  isEvening: boolean;
   eveningTime?: string;
   duration: number;
   plantId?: number;
 }
+
 export class UpdateIrrigationDto extends CreateIrrigationDto {}

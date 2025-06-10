@@ -6,6 +6,9 @@ import {SensorDataModule} from "./src/modules/sensor-data/sensor-data.module";
 import {PlantModule} from "./src/modules/plant/plant.module";
 import { WaterTank } from "./src/schemas/water-tank.schema";
 import { WaterTankModule } from "./src/modules/water-tank/water-tank.module";
+import {DeviceModule} from "./src/modules/device/device.module";
+import {IrrigationModule} from "./src/modules/irrigation/irrigation.module";
+import {HarvestModule} from "./src/modules/harvest/harvest.module";
 
 
 export const routes: Routes = [
@@ -34,15 +37,15 @@ export const routes: Routes = [
   },
   {
     path: 'harvests',
-    module: WaterTankModule,
+    module: HarvestModule,
   },
   {
-    path: 'irigation',
-    module: WaterTankModule,
+    path: 'irrigation',
+    module: IrrigationModule,
   },
   {
     path: 'device',
-    module: WaterTankModule,
+    module: DeviceModule,
   }
 
 

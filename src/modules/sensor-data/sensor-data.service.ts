@@ -39,7 +39,7 @@ export class SensorDataService {
         const endOfDay = moment().endOf('day').toDate();
         return await this.sensorDataRepository.find({
             where: {
-                topic,
+                // topic,
                 createdAt: Between(startOfDay, endOfDay),
             },
             order: { createdAt: 'DESC' },

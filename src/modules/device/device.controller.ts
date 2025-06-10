@@ -1,15 +1,17 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe} from '@nestjs/common';
 import { DeviceService } from './device.service';
+import {CreateDeviceDto, UpdateDeviceDto} from "./device.entity";
 
 
-@Controller('device')
+@Controller()
 export class DeviceController {
   constructor(private readonly deviceService: DeviceService) {}
 
-  // @Post()
-  // create(@Body() createDeviceDto: CreateDeviceDto) {
-  //   return this.deviceService.create(createDeviceDto);
-  // }
+
+  @Post()
+  create(@Body() createDeviceDto: CreateDeviceDto) {
+    return this.deviceService.create(createDeviceDto);
+  }
 
   @Get()
   findAll() {
@@ -21,10 +23,15 @@ export class DeviceController {
     return this.deviceService.findOne(+id);
   }
 
-  // @Patch(':id')
-  // update(@Param('id') id: string, @Body() updateDeviceDto: UpdateDeviceDto) {
-  //   return this.deviceService.update(+id, updateDeviceDto);
-  // }
+  @Patch(':id')
+  update(
+      @Param('id', ParseIntPipe) id: number,
+      @Body() updateDeviceDto: UpdateDeviceDto,
+  ) {
+    return this.deviceService.update(id, updateDeviceDto);
+  }
+
+
 
   @Delete(':id')
   remove(@Param('id') id: string) {

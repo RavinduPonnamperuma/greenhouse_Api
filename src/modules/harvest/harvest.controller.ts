@@ -3,7 +3,7 @@ import { HarvestService } from './harvest.service';
 import { CreateHarvestDto, UpdateHarvestDto } from "./harvest.entity";
 import { Harvest } from "../../schemas/harvest.schema";
 
-@Controller('harvest')
+@Controller()
 export class HarvestController {
   constructor(private readonly harvestService: HarvestService) {}
 

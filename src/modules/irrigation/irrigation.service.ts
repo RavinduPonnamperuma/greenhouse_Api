@@ -16,27 +16,11 @@ export class IrrigationService {
     private plantRepo: Repository<Plant>,
   ) {}
 
-  async create(dto: CreateIrrigationDto): Promise<Irrigation> {
-    const irrigation = new Irrigation();
-    irrigation.waterPerDay = dto.waterPerDay;
-    irrigation.fertilizerPerDay = dto.fertilizerPerDay;
-    irrigation.timesPerDay = dto.timesPerDay;
-    //irrigation.isMorning = dto.isMorning ?? 1;
-    irrigation.morningTime = dto.morningTime;
-    //irrigation.isEvening = dto.isEvening ?? 0;
-    irrigation.eveningTime = dto.eveningTime;
-    irrigation.duration = dto.duration;
-
-    if (dto.plantId) {
-      const plant = await this.plantRepo.findOneBy({ id: dto.plantId });
-      if (plant) {
-        irrigation.plant = plant;
-      } else {
-        throw new Error(`Plant with ID ${dto.plantId} not found`);
-      }
-    }
+  create(createDto: CreateIrrigationDto): Promise<Irrigation> {
+    const irrigation = this.irrigationRepo.create(createDto);
     return this.irrigationRepo.save(irrigation);
   }
+
 
   findAll(): Promise<Irrigation[]> {
     return this.irrigationRepo.find({ relations: ['plant'] });
