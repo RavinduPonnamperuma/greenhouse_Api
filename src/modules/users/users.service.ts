@@ -112,6 +112,7 @@ export class UsersService {
         return {
                 email: user.email,
                 userName: user.userName,
+                userId: user.id,
         };
     }
 
