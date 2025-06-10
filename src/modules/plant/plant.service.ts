@@ -39,5 +39,9 @@ export class PlantService {constructor(
 
         return await this.plantRepository.save(plant);
     }
+    // Read all
+    async findAll(): Promise<Plant[]> {
+        return this.plantRepository.find({ relations: ['polytunnel'] });
+    }
 
 }
