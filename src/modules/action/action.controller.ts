@@ -1,4 +1,4 @@
-import {Controller, Get} from '@nestjs/common';
+import {Controller, Get, Param} from '@nestjs/common';
 import {ActionService} from './action.service';
 
 @Controller()
@@ -6,13 +6,17 @@ export class ActionController {
     constructor(private readonly actionService: ActionService) {
     }
 
-    @Get('off')
-    async turnOff() {
-        // return  await this.actionService.turnOff(2)
+    @Get('off/:id')
+    async turnOff(
+        @Param('id') id: number,
+    ) {
+        return  await this.actionService.turnOff(id)
     }
 
-    @Get()
-    async turnOn() {
-       // return  await this.actionService.turnOn(3)
+    @Get(':id')
+    async turnOn(
+        @Param('id') id: number,
+    ) {
+       return  await this.actionService.turnOn(id)
     }
 }
