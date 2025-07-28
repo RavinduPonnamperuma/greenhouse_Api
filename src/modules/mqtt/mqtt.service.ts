@@ -1,6 +1,7 @@
 import {Injectable, Logger, OnModuleInit} from '@nestjs/common';
 import * as mqtt from 'mqtt';
 import {SensorDataService} from "../sensor-data/sensor-data.service";
+import {ActionService} from "../action/action.service";
 
 @Injectable()
 export class MqttService implements OnModuleInit {
@@ -77,11 +78,11 @@ export class MqttService implements OnModuleInit {
             const sensorData = JSON.parse(message);
             const data = {
                 topic,
-                data: sensorData,
+                data: message,
             };
-
+            // console.log(message)
             //save line
-            await this.saveSensorData(topic, sensorData);
+            // await this.saveSensorData(topic, sensorData);
         } catch (error) {
             this.logger.error(`Failed to parse message on topic ${message}`);
         }
