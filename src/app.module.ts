@@ -8,10 +8,15 @@ import {routes} from "../routes";
 import {dataSourceOptions} from "./config/typeorm.config";
 import {EventEmitterModule} from "@nestjs/event-emitter";
 import {MqttService} from "./modules/mqtt/mqtt.service";
-import {SensorData} from "./schemas/sensor-data.schema";
-import {SensorDataService} from "./modules/sensor-data/sensor-data.service";
 import {ActionModule} from "./modules/action/action.module";
 import {UsersModule} from "./modules/users/users.module";
+import {PolytunnelModule} from "./modules/polytunnel/polytunnel.module";
+import {SensorDataModule} from "./modules/sensor-data/sensor-data.module";
+import {PlantModule} from "./modules/plant/plant.module";
+import { WaterTankModule } from "./modules/water-tank/water-tank.module";
+import { HarvestModule } from "./modules/harvest/harvest.module";
+import { IrrigationModule } from "./modules/irrigation/irrigation.module";
+import { DeviceModule } from "./modules/device/device.module";
 
 
 @Module({
@@ -23,15 +28,19 @@ import {UsersModule} from "./modules/users/users.module";
         TypeOrmModule.forRoot(dataSourceOptions),
         RouterModule.register(routes),
         EventEmitterModule.forRoot(),
-        TypeOrmModule.forFeature([SensorData]),
         ActionModule,
-        UsersModule
-
+        UsersModule,
+        SensorDataModule,
+        PlantModule,
+        PolytunnelModule,
+        WaterTankModule,
+        HarvestModule,
+        IrrigationModule,
+        DeviceModule
     ],
     controllers: [AppController,],
     providers: [AppService,
-        MqttService,
-        SensorDataService,
+        MqttService
     ],
 })
 export class AppModule {

@@ -1,9 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne } from 'typeorm';
-import { BaseEntity } from 'typeorm';
+import {BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
+import {Role} from "../util/role.enum";
 import {Polytunnel} from "./polytunnel.schema";
-import {Role} from "./role.schema";
-import {Notification} from "./notification.schema";
-import {Actuators} from "./actuator.schema";
 
 
 @Entity( 'tbl_user' )
@@ -12,35 +9,35 @@ export class User extends BaseEntity {
   id: number;
 
   @Column()
-  FirstName: string;
+  userName: string;
 
   @Column()
-  LastName: string;
+  name: string;
 
   @Column()
-  Name: string;
+  email: string;
 
   @Column()
-  Email: string;
+  password: string;
 
   @Column()
-  Password: string;
+  address: string;
 
   @Column()
-  Address: string;
+  status: string;
 
   @Column()
-  Contact: string;
+  contact: string;
 
-  @ManyToOne(() => Role, role => role.users)
-  Role: Role;
+  @Column({
+    type: 'enum',
+    enum: Role,
+    default: Role.USER,
+  })
+  role: Role;
 
-  @OneToMany(() => Polytunnel, polytunnel => polytunnel.User)
-  Polytunnels: Polytunnel[];
 
-  @OneToMany(() => Notification, notification => notification.User)
-  Notifications: Notification[];
+  @OneToMany(() => Polytunnel, polytunnel => polytunnel.user)
+  polytunnel: Polytunnel[];
 
-  @OneToMany(() => Actuators, actuator => actuator.User)
-  Actuators: Actuators[];
 }

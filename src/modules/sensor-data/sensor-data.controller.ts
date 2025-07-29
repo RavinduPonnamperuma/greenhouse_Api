@@ -1,7 +1,15 @@
-import { Controller } from '@nestjs/common';
-import { SensorDataService } from './sensor-data.service';
+import {Controller, Get, Query} from '@nestjs/common';
+import {SensorDataService} from './sensor-data.service';
 
-@Controller('sensor-data')
+@Controller()
 export class SensorDataController {
-  constructor(private readonly sensorDataService: SensorDataService) {}
+    constructor(private readonly sensorDataService: SensorDataService) {
+    }
+
+    @Get()
+    async findAll(
+        @Query('topic')topic: string,
+    ) {
+        return await this.sensorDataService.getAllSensorData(topic)
+    }
 }

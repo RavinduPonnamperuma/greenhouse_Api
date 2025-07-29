@@ -1,22 +1,30 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import { BaseEntity } from 'typeorm';
-import {Actuation} from "./actuation.schema";
+import {BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn} from 'typeorm';
+import {Plant} from './plant.schema';
+import {Irrigation} from './irrigration.schema';
 
+@Entity('tbl_irrigation_schedule')
+export class PlantSchedule extends BaseEntity {
+    @PrimaryGeneratedColumn()
+    id: number;
 
-@Entity( 'tbl_schedule' )
-export class Schedule extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+    @ManyToOne(() => Plant, plant => plant.id)
+    plant: Plant;
 
-  @Column()
-  SchedulingName: string;
+    @ManyToOne(() => Irrigation, irrigation => irrigation.id, { nullable: true, onDelete: 'SET NULL' })
+    irrigation: Irrigation;
 
-  @Column()
-  SchedulingTime: Date;
+    @Column()
+    scheduledDate: string;
 
-  @Column()
-  SchedulingData: string;
+    @Column()
+    scheduledTime: string;
 
-  @OneToMany(() => Actuation, actuation => actuation.Schedule)
-  Actuations: Actuation[];
+    @Column()
+    taskType: string;
+
+    @Column('int')
+    duration: number;
+
+    @Column({ default: false })
+    isCompleted: boolean;
 }
