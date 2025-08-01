@@ -29,7 +29,6 @@ export class Polytunnel extends BaseEntity {
     //     }
     //     this.code = `GH-${nextNumber.toString().padStart(4, '0')}`;
     // }
-
     @Column()
     status: string;
 
