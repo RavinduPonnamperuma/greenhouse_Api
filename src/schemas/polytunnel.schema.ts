@@ -3,6 +3,7 @@ import {User} from './user.schema';
 import {Device} from './device.schema';
 import {Plant} from './plant.schema';
 import {WaterTank} from "./water-tank.schema";
+import {GreenhouseComponent} from "./component.schema";
 
 @Entity('tbl_polytunnel')
 export class Polytunnel extends BaseEntity {
@@ -29,6 +30,7 @@ export class Polytunnel extends BaseEntity {
     //     }
     //     this.code = `GH-${nextNumber.toString().padStart(4, '0')}`;
     // }
+
     @Column()
     status: string;
 
@@ -57,6 +59,8 @@ export class Polytunnel extends BaseEntity {
     @OneToMany(() => Plant, plant => plant.polytunnel) // note lowercase 'polytunnel'
     plants: Plant[];
 
+    @OneToMany(() => GreenhouseComponent, component => component.polytunnel)
+    components: GreenhouseComponent[];
 
     @OneToMany(() => WaterTank, waterTank => waterTank.polytunnel)
     waterTanks: WaterTank[];
