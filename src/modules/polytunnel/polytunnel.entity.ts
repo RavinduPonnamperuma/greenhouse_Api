@@ -1,7 +1,6 @@
-// import {IsNotEmpty, IsNumber, IsOptional, IsString} from 'class-validator';
+import { PartialType } from "@nestjs/mapped-types";
 
-export class CreatePolytunnelDTO {
-
+export class PolytunnelDTO {
   code: string;
   status: string;
   location: string;
@@ -11,5 +10,7 @@ export class CreatePolytunnelDTO {
   numberOfPlants: string;
   userId?: number;
   deviceId?: number;
-  waterTank?: number;
 }
+
+export class CreatePolytunnelDTO extends PolytunnelDTO {}
+export class UpdatePolytunnelDTO extends PartialType(PolytunnelDTO) {}
