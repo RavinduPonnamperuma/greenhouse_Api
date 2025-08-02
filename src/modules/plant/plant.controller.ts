@@ -6,8 +6,6 @@ import {CreatePlantDto} from "./plant.entity";
 export class PlantController {
   constructor(private readonly plantService: PlantService) {}
 
-
-
   @Post()
   async save(@Body() plant: CreatePlantDto) {
     return this.plantService.savePlant(plant)

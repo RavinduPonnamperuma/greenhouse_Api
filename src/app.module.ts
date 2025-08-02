@@ -17,6 +17,7 @@ import { WaterTankModule } from "./modules/water-tank/water-tank.module";
 import { HarvestModule } from "./modules/harvest/harvest.module";
 import { IrrigationModule } from "./modules/irrigation/irrigation.module";
 import { DeviceModule } from "./modules/device/device.module";
+import { ScheduleModule } from "./modules/schedule/schedule.module";
 
 
 @Module({
@@ -36,7 +37,9 @@ import { DeviceModule } from "./modules/device/device.module";
         WaterTankModule,
         HarvestModule,
         IrrigationModule,
-        DeviceModule
+        DeviceModule,
+        ScheduleModule
+
     ],
     controllers: [AppController,],
     providers: [AppService,

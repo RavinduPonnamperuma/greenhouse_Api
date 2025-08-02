@@ -22,12 +22,12 @@ export class HarvestController {
     return this.harvestService.findOne(id);
   }
 
-  @Put(':id')
+  @Patch(':id') // <== THIS is missing based on your error
   update(
-    @Param('id') id: number,
+    @Param('id') id: string,
     @Body() dto: UpdateHarvestDto,
-  ): Promise<Harvest> {
-    return this.harvestService.update(id, dto);
+  ) {
+    return this.harvestService.update(+id, dto);
   }
 
   @Delete(':id')

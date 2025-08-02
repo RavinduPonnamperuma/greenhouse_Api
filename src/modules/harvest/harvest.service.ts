@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from "@nestjs/common";
 import {InjectRepository} from "@nestjs/typeorm";
 import { Harvest } from "../../schemas/harvest.schema";
 import {Repository} from "typeorm";
@@ -41,6 +41,7 @@ export class HarvestService {
       relations: ['plant'],
     });
   }
+
   async update(id: number, dto: UpdateHarvestDto): Promise<Harvest> {
     const harvest = await this.harvestRepository.findOneBy({ id });
     if (!harvest) {
@@ -61,7 +62,12 @@ export class HarvestService {
     return this.harvestRepository.save(harvest);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} harvest`;
+  async remove(id: number): Promise<string> {
+    const harvest = await this.harvestRepository.findOneBy({ id });
+    if (!harvest) {
+      throw new NotFoundException(`Harvest with ID ${id} not found`);
+    }
+    await this.harvestRepository.remove(harvest);
+    return `Harvest with ID ${id} has been deleted`;
   }
 }

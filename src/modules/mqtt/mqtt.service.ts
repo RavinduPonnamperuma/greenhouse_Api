@@ -81,29 +81,39 @@ export class MqttService implements OnModuleInit {
                 data: message,
             };
             // console.log(message)
+            // console.log(topic)
             //save line
-            // await this.saveSensorData(topic, sensorData);
+            await this.saveSensorData(topic, message);
         } catch (error) {
             this.logger.error(`Failed to parse message on topic ${message}`);
         }
     }
 
-    async saveSensorData(topic: string, data: any) {
 
-        for (const key of Object.keys(data)) {
-            const sensorId = this.sensorMapping[key];
+
+    async saveSensorData(topic: string, data: any) {
+        const parsedData = typeof data === 'string' ? JSON.parse(data) : data;
+        const mappedSensors = Object.entries(parsedData).map(([key, value]) => ({
+            sensorId: this.sensorMapping[key as keyof typeof this.sensorMapping],
+            value: Number(value)
+        }));
+
+        for (const { sensorId, value } of mappedSensors) {
             if (sensorId !== undefined) {
                 const sensorData = {
-                    topic: key,
+                    topic,
                     sensorId,
-                    value: data[key]
+                    value:value
                 };
                 await this.sensorDataService.saveSensorData(sensorData);
             } else {
-                console.warn(`Unknown sensor key: ${key}`);
+                console.warn(`Unknown sensor key found:`, value);
             }
         }
+        return mappedSensors;
     }
+
+
 
 
     private publish(topic: string, message: string) {

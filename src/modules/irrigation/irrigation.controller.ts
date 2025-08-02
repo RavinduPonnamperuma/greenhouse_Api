@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { IrrigationService } from './irrigation.service';
-import { CreateIrrigationDto } from "./irrigation.entity";
+import { CreateIrrigationDto, UpdateIrrigationDto } from "./irrigation.entity";
 
 @Controller()
 export class IrrigationController {
@@ -21,10 +21,10 @@ export class IrrigationController {
     return this.irrigationService.findOne(id);
   }
 
-  // @Patch(':id')
-  // update(@Param('id') id: string, @Body() updateIrrigationDto: UpdateIrrigationDto) {
-  //   return this.irrigationService.update(+id, updateIrrigationDto);
-  // }
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateIrrigationDto: UpdateIrrigationDto) {
+    return this.irrigationService.update(+id, updateIrrigationDto);
+  }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
