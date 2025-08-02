@@ -1,0 +1,26 @@
+SELECT pt.code, SUM(h.quantity * h.sellingPrice) as total_revenue, SUM(p.cost) as total_cost,
+       (SUM(h.quantity * h.sellingPrice) - SUM(p.cost)) as profit
+FROM tbl_polytunnel pt
+JOIN tbl_plant p ON pt.id = p.polytunnelId
+JOIN tbl_harvest h ON p.id = h.plantId
+GROUP BY pt.code;
+
+SELECT pt.code, SUM(i.waterPerDay) as total_water, SUM(i.fertilizerPerDay) as total_fertilizer, COUNT(isched.id) as completed_tasks
+FROM tbl_polytunnel pt
+JOIN tbl_plant p ON pt.id = p.polytunnelId
+JOIN tbl_irrigation i ON p.id = i.plantId
+JOIN tbl_irrigation_schedule isched ON i.id = isched.irrigationId
+WHERE isched.isCompleted = 1
+GROUP BY pt.code;
+
+
+SELECT p.plantName, h.variety, AVG(h.quantity) as avg_yield, SUM(h.sellingPrice * h.quantity) as total_revenue
+FROM tbl_plant p
+JOIN tbl_harvest h ON p.id = h.plantId
+GROUP BY p.plantName, h.variety;
+
+SELECT pt.code, pt.location, SUM(h.quantity) as total_yield, SUM(h.quantity * h.sellingPrice) as revenue
+FROM tbl_polytunnel pt
+LEFT JOIN tbl_plant p ON pt.id = p.polytunnelId
+LEFT JOIN tbl_harvest h ON p.id = h.plantId
+GROUP BY pt.id, pt.code, pt.location;
