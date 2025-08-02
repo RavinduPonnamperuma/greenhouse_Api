@@ -1,4 +1,4 @@
-import {Controller, Get, Query} from '@nestjs/common';
+import {Controller, Get, Param, Query} from '@nestjs/common';
 import {SensorDataService} from './sensor-data.service';
 
 @Controller()
@@ -11,5 +11,10 @@ export class SensorDataController {
         @Query('topic')topic: string,
     ) {
         return await this.sensorDataService.getAllSensorData(topic)
+    }
+
+    @Get('water-level/:id')
+    async getWaterTank(@Param('id') id: number) {
+        return await this.sensorDataService.getWaterTankLevel(id)
     }
 }

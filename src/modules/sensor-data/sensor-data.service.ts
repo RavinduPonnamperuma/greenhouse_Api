@@ -5,6 +5,8 @@ import {InjectRepository} from "@nestjs/typeorm";
 import {Sensors} from "../../schemas/sensor.schema";
 import {CreateSensorDataDTO} from "./sensor_data.entity";
 import * as moment from 'moment';
+import {WaterTank} from "../../schemas/water-tank.schema";
+import {WaterTankHistory} from "../../schemas/water-tank-history.schema";
 
 
 @Injectable()
@@ -15,6 +17,10 @@ export class SensorDataService {
         private sensorDataRepository: Repository<SensorData>,
         @InjectRepository(Sensors)
         private sensorsRepository: Repository<Sensors>,
+        @InjectRepository(WaterTank)
+        private waterTankRepository: Repository<WaterTank>,
+        @InjectRepository(WaterTankHistory)
+        private waterTankHistoryRepository: Repository<WaterTankHistory>,
     ) {
     }
 
@@ -45,5 +51,24 @@ export class SensorDataService {
             order: { createdAt: 'DESC' },
         });
     }
+
+    async getWaterTankLevel(id: number) {
+        const result = await this.waterTankRepository
+            .createQueryBuilder('wt')
+            .leftJoin('wt.history', 'wth')
+            .select('wt.id', 'waterTankId')
+            .addSelect('wt.tankNumber', 'tankNumber')
+            .addSelect('wt.capacity', 'totalCapacity')
+            .addSelect('COALESCE(SUM(wth.outCapacity), 0)', 'totalOut')
+            .addSelect('wt.capacity - COALESCE(SUM(wth.outCapacity), 0)', 'currentWaterLevel')
+            .where('wt.id = :id', { id })
+            .groupBy('wt.id')
+            .addGroupBy('wt.tankNumber')
+            .addGroupBy('wt.capacity')
+            .getRawOne();
+
+        return result;
+    }
+
 
 }
