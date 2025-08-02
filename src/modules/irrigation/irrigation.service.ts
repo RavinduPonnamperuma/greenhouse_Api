@@ -16,9 +16,13 @@ export class IrrigationService {
     private plantRepo: Repository<Plant>,
   ) {}
 
-  create(createDto: CreateIrrigationDto): Promise<Irrigation> {
-    const irrigation = this.irrigationRepo.create(createDto);
+  create(createDto: CreateIrrigationDto) {
+    const irrigation = this.irrigationRepo.create({
+      ...createDto,
+      plant: createDto.plantId ? { id: createDto.plantId } : undefined,
+    });
     return this.irrigationRepo.save(irrigation);
+
   }
 
 
