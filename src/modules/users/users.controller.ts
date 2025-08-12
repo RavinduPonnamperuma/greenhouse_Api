@@ -53,7 +53,7 @@ export class UsersController {
 
   @Post('login')
   async login(@Body() loginDto: UserLoginDTO) {
-    return await this.userService.login(loginDto.email, loginDto.password);
+    return await this.userService.login(loginDto.username, loginDto.password);
   }
 
 
