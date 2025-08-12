@@ -75,7 +75,7 @@ export class MqttService implements OnModuleInit {
 
     private async handleMessage(topic: string, message: string) {
         try {
-            const sensorData = JSON.parse(message);
+            // const sensorData = JSON.parse(message);
             const data = {
                 topic,
                 data: message,
@@ -95,13 +95,15 @@ export class MqttService implements OnModuleInit {
         const parsedData = typeof data === 'string' ? JSON.parse(data) : data;
         const mappedSensors = Object.entries(parsedData).map(([key, value]) => ({
             sensorId: this.sensorMapping[key as keyof typeof this.sensorMapping],
-            value: Number(value)
+            value: Number(value),
+            name:key ,
         }));
 
-        for (const { sensorId, value } of mappedSensors) {
+
+        for (const { sensorId, value,name } of mappedSensors) {
             if (sensorId !== undefined) {
                 const sensorData = {
-                    topic,
+                    topic:name,
                     sensorId,
                     value:value
                 };
