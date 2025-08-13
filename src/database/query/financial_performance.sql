@@ -6,6 +6,7 @@ CREATE PROCEDURE sp_financial_performance(
 )
 BEGIN
     SELECT pt.code,
+           pt.location,
            SUM(h.quantity * h.sellingPrice)                 AS total_revenue,
            SUM(p.cost)                                      AS total_cost,
            (SUM(h.quantity * h.sellingPrice) - SUM(p.cost)) AS profit
@@ -14,5 +15,5 @@ BEGIN
              JOIN tbl_harvest h ON p.id = h.plantId
     WHERE h.harvestDate BETWEEN startDate AND endDate
       AND (pt.code = polytunnelCode OR polytunnelCode IS NULL)
-    GROUP BY pt.code;
+    GROUP BY pt.id;
 END;
