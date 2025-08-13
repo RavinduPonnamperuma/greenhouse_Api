@@ -13,11 +13,12 @@ import {UsersModule} from "./modules/users/users.module";
 import {PolytunnelModule} from "./modules/polytunnel/polytunnel.module";
 import {SensorDataModule} from "./modules/sensor-data/sensor-data.module";
 import {PlantModule} from "./modules/plant/plant.module";
-import { WaterTankModule } from "./modules/water-tank/water-tank.module";
-import { HarvestModule } from "./modules/harvest/harvest.module";
-import { IrrigationModule } from "./modules/irrigation/irrigation.module";
-import { DeviceModule } from "./modules/device/device.module";
-import { ScheduleModule } from "./modules/schedule/schedule.module";
+import {WaterTankModule} from "./modules/water-tank/water-tank.module";
+import {HarvestModule} from "./modules/harvest/harvest.module";
+import {IrrigationModule} from "./modules/irrigation/irrigation.module";
+import {DeviceModule} from "./modules/device/device.module";
+import {ScheduleModule} from "./modules/schedule/schedule.module";
+import {ReportsModule} from "./modules/reports/reports.module";
 
 
 @Module({
@@ -38,6 +39,7 @@ import { ScheduleModule } from "./modules/schedule/schedule.module";
         HarvestModule,
         IrrigationModule,
         DeviceModule,
+        ReportsModule,
         ScheduleModule
 
     ],
