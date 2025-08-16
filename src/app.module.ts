@@ -2,7 +2,7 @@ import {Module} from "@nestjs/common";
 import {AppController} from "./app.controller";
 import {AppService} from "./app.service";
 import {ConfigModule} from "@nestjs/config";
-import {RouterModule} from "@nestjs/core";
+import {APP_INTERCEPTOR, RouterModule} from "@nestjs/core";
 import {TypeOrmModule} from "@nestjs/typeorm";
 import {routes} from "../routes";
 import {dataSourceOptions} from "./config/typeorm.config";
@@ -19,6 +19,7 @@ import {IrrigationModule} from "./modules/irrigation/irrigation.module";
 import {DeviceModule} from "./modules/device/device.module";
 import {ScheduleModule} from "./modules/schedule/schedule.module";
 import {ReportsModule} from "./modules/reports/reports.module";
+import {ResponseInterceptor} from "./interceptor/response.interceptor";
 
 
 @Module({
@@ -45,7 +46,11 @@ import {ReportsModule} from "./modules/reports/reports.module";
     ],
     controllers: [AppController,],
     providers: [AppService,
-        MqttService
+        MqttService,
+        {
+            provide: APP_INTERCEPTOR,
+            useClass: ResponseInterceptor,
+        },
     ],
 })
 export class AppModule {
