@@ -1,4 +1,4 @@
-import {Body, Controller, Get, Post} from '@nestjs/common';
+import {Body, Controller, Get, Param, Patch, Post} from '@nestjs/common';
 import {PlantService} from './plant.service';
 import {CreatePlantDto} from "./plant.entity";
 
@@ -13,6 +13,11 @@ export class PlantController {
   @Get()
   findAll() {
     return this.plantService.findAll();
+  }
+
+  @Patch(':id')
+  async update(@Param('id') id: number, @Body() dto: CreatePlantDto) {
+    return this.plantService.updatePlant(id, dto);
   }
 
 }

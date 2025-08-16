@@ -10,3 +10,4 @@ export class CreatePlantDto {
     endTime: string;
     polytunnelId?: number;
 }
+export class UpdatePlantDto extends CreatePlantDto{}

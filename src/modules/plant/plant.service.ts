@@ -3,7 +3,7 @@ import {Plant} from "../../schemas/plant.schema";
 import {Polytunnel} from "../../schemas/polytunnel.schema";
 import {Repository} from "typeorm";
 import {InjectRepository} from "@nestjs/typeorm";
-import {CreatePlantDto} from "./plant.entity";
+import {CreatePlantDto, UpdatePlantDto} from "./plant.entity";
 
 
 export class CreatePlantDTO{
@@ -43,5 +43,30 @@ export class PlantService {constructor(
     async findAll(): Promise<Plant[]> {
         return this.plantRepository.find({ relations: ['polytunnel'] });
     }
+
+
+    async updatePlant(id: number, dto: UpdatePlantDto): Promise<Plant> {
+        const plant = await this.plantRepository.findOne({ where: { id } });
+
+        if (!plant) {
+            throw new Error(`Plant with ID ${id} not found`);
+        }
+
+        plant.plantName = dto.plantName;
+        plant.status = dto.status;
+        plant.cost = dto.cost;
+        plant.harvestTime = dto.harvestTime;
+        plant.startDate = dto.startDate;
+        plant.endTime = dto.endTime;
+
+        if (dto.polytunnelId) {
+            plant.polytunnel = { id: dto.polytunnelId } as Polytunnel;
+        } else {
+            plant.polytunnel = null;
+        }
+
+        return await this.plantRepository.save(plant);
+    }
+
 
 }

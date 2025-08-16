@@ -26,6 +26,7 @@ export class MqttService implements OnModuleInit {
         this.connectToBroker();
     }
 
+    //connect with esp32 MQTT topics
     private connectToBroker() {
         const options: mqtt.IClientOptions = {
             host: '84.247.164.45',
@@ -37,6 +38,7 @@ export class MqttService implements OnModuleInit {
         this.client = mqtt.connect('mqtt://84.247.164.45:1883', options);
         this.logger.log(`Attempting to connect to MQTT broker at ${options.host}:${options.port}`);
 
+        //connecting broker for nodered
         this.client.on('connect', () => {
             this.logger.log('Successfully connected to MQTT broker');
 
@@ -73,9 +75,10 @@ export class MqttService implements OnModuleInit {
         });
     }
 
+    //process trigger sensor data
     private async handleMessage(topic: string, message: string) {
         try {
-            // const sensorData = JSON.parse(message);
+            const sensorData = JSON.parse(message);
             const data = {
                 topic,
                 data: message,
@@ -90,20 +93,18 @@ export class MqttService implements OnModuleInit {
     }
 
 
-
+//sensor data map
     async saveSensorData(topic: string, data: any) {
         const parsedData = typeof data === 'string' ? JSON.parse(data) : data;
         const mappedSensors = Object.entries(parsedData).map(([key, value]) => ({
             sensorId: this.sensorMapping[key as keyof typeof this.sensorMapping],
-            value: Number(value),
-            name:key ,
+            value: Number(value)
         }));
 
-
-        for (const { sensorId, value,name } of mappedSensors) {
+        for (const { sensorId, value } of mappedSensors) {
             if (sensorId !== undefined) {
                 const sensorData = {
-                    topic:name,
+                    topic,
                     sensorId,
                     value:value
                 };
@@ -117,7 +118,7 @@ export class MqttService implements OnModuleInit {
 
 
 
-
+//message publish for turn on turn off actuators (water pump,fan,frtilizer)
     private publish(topic: string, message: string) {
         if (this.client?.connected) {
             this.client.publish(topic, message, { qos: 1 }, (err) => {
@@ -132,6 +133,8 @@ export class MqttService implements OnModuleInit {
         }
     }
 
+
+    //bulbs process
     turnOnLed(ledNumber: number) {
         const topic = `esp/1/led${ledNumber}`;
         this.publish(topic, 'ON');
