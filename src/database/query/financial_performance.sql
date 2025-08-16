@@ -1,4 +1,4 @@
-DROP PROCEDURE sp_financial_performance;
+DROP PROCEDURE  IF EXISTS sp_financial_performance;
 CREATE PROCEDURE sp_financial_performance(
     IN startDate DATE,
     IN endDate DATE,

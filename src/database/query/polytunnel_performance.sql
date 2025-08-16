@@ -1,4 +1,4 @@
-DROP PROCEDURE sp_polytunnel_performance;
+DROP PROCEDURE IF EXISTS sp_polytunnel_performance;
 CREATE PROCEDURE sp_polytunnel_performance(
     IN startDate DATE,
     IN endDate DATE,

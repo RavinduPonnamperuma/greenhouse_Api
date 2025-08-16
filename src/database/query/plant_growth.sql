@@ -1,4 +1,4 @@
-DROP PROCEDURE sp_plant_growth;
+DROP PROCEDURE IF EXISTS sp_plant_growth;
 CREATE PROCEDURE sp_plant_growth(
     IN startDate DATE,
     IN endDate DATE,

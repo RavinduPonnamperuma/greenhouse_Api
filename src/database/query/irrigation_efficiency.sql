@@ -1,4 +1,4 @@
-DROP PROCEDURE sp_irrigation_efficiency;
+DROP PROCEDURE IF EXISTS sp_irrigation_efficiency;
 CREATE PROCEDURE sp_irrigation_efficiency(
     IN startDate DATE,
     IN endDate DATE,
