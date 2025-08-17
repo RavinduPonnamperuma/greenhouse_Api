@@ -4,6 +4,7 @@ import {Polytunnel} from "../../schemas/polytunnel.schema";
 import {Repository} from "typeorm";
 import {InjectRepository} from "@nestjs/typeorm";
 import {CreatePlantDto, UpdatePlantDto} from "./plant.entity";
+import { format } from 'date-fns';
 
 
 export class CreatePlantDTO{
@@ -39,9 +40,18 @@ export class PlantService {constructor(
 
         return await this.plantRepository.save(plant);
     }
-    // Read all
-    async findAll(): Promise<Plant[]> {
-        return this.plantRepository.find({ relations: ['polytunnel'] });
+    async findAll(): Promise<any[]> {
+        const plants = await this.plantRepository.find({ relations: ['polytunnel'] });
+
+        return plants.map(plant => ({
+            ...plant,
+            startDate: plant.startDate ? format(new Date(plant.startDate), 'yyyy-MM-dd') : null,
+            endTime: plant.endTime ? format(new Date(`1970-01-01T${plant.endTime}`), 'HH:mm') : null,
+            // or combine if you want
+            startEnd: plant.startDate && plant.endTime
+                ? `${format(new Date(plant.startDate), 'yyyy-MM-dd')} ${format(new Date(`1970-01-01T${plant.endTime}`), 'HH:mm')}`
+                : null,
+        }));
     }
 
 
