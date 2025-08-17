@@ -103,7 +103,7 @@ export class MqttService implements OnModuleInit {
         }));
 
 
-        console.log(mappedSensors)
+        // console.log(mappedSensors)
         for (const { sensorId, value,name } of mappedSensors) {
             if (sensorId !== undefined) {
                 const sensorData = {

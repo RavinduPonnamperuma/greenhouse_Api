@@ -1,12 +1,11 @@
 import {Injectable, NotFoundException} from '@nestjs/common';
 import {SensorData} from "../../schemas/sensor-data.schema";
-import {Between, Repository} from "typeorm";
+import {Between, DataSource, Repository} from "typeorm";
 import {InjectRepository} from "@nestjs/typeorm";
 import {Sensors} from "../../schemas/sensor.schema";
 import {CreateSensorDataDTO} from "./sensor_data.entity";
 import * as moment from 'moment';
 import {WaterTank} from "../../schemas/water-tank.schema";
-import {WaterTankHistory} from "../../schemas/water-tank-history.schema";
 
 
 @Injectable()
@@ -19,8 +18,8 @@ export class SensorDataService {
         private sensorsRepository: Repository<Sensors>,
         @InjectRepository(WaterTank)
         private waterTankRepository: Repository<WaterTank>,
-        @InjectRepository(WaterTankHistory)
-        private waterTankHistoryRepository: Repository<WaterTankHistory>,
+        @InjectRepository(DataSource)
+        private dataSourceRepository: Repository<DataSource>,
     ) {
     }
 
@@ -40,7 +39,7 @@ export class SensorDataService {
         return await this.sensorDataRepository.save(sensorData);
     }
 
-    async getAllSensorData(topic:string) {
+    async getAllSensorData(topic: string) {
         const startOfDay = moment().startOf('day').toDate();
         const endOfDay = moment().endOf('day').toDate();
         return await this.sensorDataRepository.find({
@@ -48,7 +47,7 @@ export class SensorDataService {
                 // topic,
                 createdAt: Between(startOfDay, endOfDay),
             },
-            order: { createdAt: 'DESC' },
+            order: {createdAt: 'DESC'},
         });
     }
 
@@ -61,13 +60,21 @@ export class SensorDataService {
             .addSelect('wt.capacity', 'totalCapacity')
             .addSelect('COALESCE(SUM(wth.outCapacity), 0)', 'totalOut')
             .addSelect('wt.capacity - COALESCE(SUM(wth.outCapacity), 0)', 'currentWaterLevel')
-            .where('wt.id = :id', { id })
+            .where('wt.id = :id', {id})
             .groupBy('wt.id')
             .addGroupBy('wt.tankNumber')
             .addGroupBy('wt.capacity')
             .getRawOne();
 
         return result;
+    }
+
+
+    async getDashBoardDate() {
+        const result = await this.dataSourceRepository.query(
+            `CALL get_dashboard_metrics()`
+        );
+        return result[0];
     }
 
 
