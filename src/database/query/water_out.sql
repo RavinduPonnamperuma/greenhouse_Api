@@ -7,7 +7,7 @@ BEGIN
     DECLARE v_outCapacity DECIMAL(10, 2);
 
     -- Fixed amount to deduct
-    SET v_outCapacity = 0.5;
+    SET v_outCapacity = 2.0;
 
     -- Deduct from tank
     UPDATE tbl_water_tank
