@@ -47,10 +47,6 @@ import {ResponseInterceptor} from "./interceptor/response.interceptor";
     controllers: [AppController,],
     providers: [AppService,
         MqttService,
-        {
-            provide: APP_INTERCEPTOR,
-            useClass: ResponseInterceptor,
-        },
     ],
 })
 export class AppModule {
