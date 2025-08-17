@@ -10,7 +10,7 @@ export class MqttService implements OnModuleInit {
 
      sensorMapping = {
         humidity: 1,
-        moisture: 2,
+         moisture: 2,
         temperature: 3
     };
 
@@ -78,7 +78,7 @@ export class MqttService implements OnModuleInit {
     //process trigger sensor data
     private async handleMessage(topic: string, message: string) {
         try {
-            const sensorData = JSON.parse(message);
+            // const sensorData = JSON.parse(message);
             const data = {
                 topic,
                 data: message,
@@ -98,17 +98,20 @@ export class MqttService implements OnModuleInit {
         const parsedData = typeof data === 'string' ? JSON.parse(data) : data;
         const mappedSensors = Object.entries(parsedData).map(([key, value]) => ({
             sensorId: this.sensorMapping[key as keyof typeof this.sensorMapping],
-            value: Number(value)
+            value: Number(value),
+            name:key ,
         }));
 
-        for (const { sensorId, value } of mappedSensors) {
+
+        console.log(mappedSensors)
+        for (const { sensorId, value,name } of mappedSensors) {
             if (sensorId !== undefined) {
                 const sensorData = {
-                    topic,
+                    topic:name,
                     sensorId,
                     value:value
                 };
-                await this.sensorDataService.saveSensorData(sensorData);
+                // await this.sensorDataService.saveSensorData(sensorData);
             } else {
                 console.warn(`Unknown sensor key found:`, value);
             }
