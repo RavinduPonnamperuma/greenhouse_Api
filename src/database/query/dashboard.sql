@@ -10,10 +10,11 @@ BEGIN
            AND MONTH(startDate) = MONTH(CURDATE()))   AS growingPlants,
 
         -- Distinct plants harvested this month
-        (SELECT COUNT(DISTINCT plantId)
-         FROM tbl_harvest
-         WHERE YEAR(harvestDate) = YEAR(CURDATE())
-           AND MONTH(harvestDate) = MONTH(CURDATE())) AS harvestedPlants,
+        (SELECT COUNT(*)
+         FROM tbl_plant
+         WHERE status = 'Dead'
+           AND YEAR(startDate) = YEAR(CURDATE())
+           AND MONTH(startDate) = MONTH(CURDATE()))  AS harvestedPlants,
 
         -- Total income this month
         (SELECT IFNULL(SUM(sellingPrice * quantity), 0)
