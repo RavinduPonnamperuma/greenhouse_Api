@@ -74,18 +74,18 @@ export class ActionService implements OnModuleInit {
 
 
     async onModuleInit() {
-        const report = await this.getPolytunnelReport();
-        console.log('Polytunnel report:', report); // shows array of tasks
-
-        // Access components of each task
-        for (const task of report) {
-            console.log(`Components for task :`, task.components);
-        }
-
-        // Run every 2 minutes
-        setInterval(async () => {
-            await this.runPolytunnelTasks();
-        }, 2 * 60 * 1000); // 2 minutes
+        // const report = await this.getPolytunnelReport();
+        // console.log('Polytunnel report:', report); // shows array of tasks
+        //
+        // // Access components of each task
+        // for (const task of report) {
+        //     // console.log(`Components for task :`, task.components);
+        // }
+        //
+        // // Run every 2 minutes
+        // setInterval(async () => {
+        //     await this.runPolytunnelTasks();
+        // }, 2 * 60 * 1000); // 2 minutes
     }
 
 
