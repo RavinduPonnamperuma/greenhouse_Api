@@ -111,7 +111,7 @@ export class MqttService implements OnModuleInit {
                     sensorId,
                     value:value
                 };
-                // await this.sensorDataService.saveSensorData(sensorData);
+                await this.sensorDataService.saveSensorData(sensorData);
             } else {
                 console.warn(`Unknown sensor key found:`, value);
             }
