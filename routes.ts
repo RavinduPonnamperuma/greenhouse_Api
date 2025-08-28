@@ -10,6 +10,7 @@ import {DeviceModule} from "./src/modules/device/device.module";
 import {IrrigationModule} from "./src/modules/irrigation/irrigation.module";
 import {HarvestModule} from "./src/modules/harvest/harvest.module";
 import { ScheduleModule } from "./src/modules/schedule/schedule.module";
+import {ReportsModule} from "./src/modules/reports/reports.module";
 
 
 export const routes: Routes = [
@@ -51,6 +52,9 @@ export const routes: Routes = [
   {
     path: 'schedule',
     module: ScheduleModule,
+  },  {
+    path: 'reports',
+    module: ReportsModule,
   }
 
 

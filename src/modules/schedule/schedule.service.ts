@@ -5,8 +5,7 @@ import { Repository } from "typeorm";
 import { Plant } from "../../schemas/plant.schema";
 import { Irrigation } from "../../schemas/irrigration.schema";
 import { CreateScheduleDto, UpdateScheduleDto } from "./schedule.entity";
-// import { CreateScheduleDto } from './dto/create-schedule.dto';
-// import { UpdateScheduleDto } from './dto/update-schedule.dto';
+
 
 @Injectable()
 export class ScheduleService {

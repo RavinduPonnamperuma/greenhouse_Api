@@ -25,7 +25,7 @@ export class UpdateUserDTO extends UserDTO {}
 
 
 export class UserLoginDTO{
-  email: string;
+    username: string;
   password: string;
 }
 export class LoginResponseDto {

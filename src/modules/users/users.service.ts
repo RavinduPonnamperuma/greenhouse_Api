@@ -98,9 +98,7 @@ export class UsersService {
     // }
 
     async login(email: string, password: string) {
-        console.log('Login attempt with email:', email);
         const user = await this.userRepository.findOne({ where: { email } });
-        // console.log(user);
         if (!user) {
             throw new UnauthorizedException('Invalid user');
         }
