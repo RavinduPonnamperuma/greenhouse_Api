@@ -2,7 +2,7 @@ import {Module} from "@nestjs/common";
 import {AppController} from "./app.controller";
 import {AppService} from "./app.service";
 import {ConfigModule} from "@nestjs/config";
-import {RouterModule} from "@nestjs/core";
+import {APP_INTERCEPTOR, RouterModule} from "@nestjs/core";
 import {TypeOrmModule} from "@nestjs/typeorm";
 import {routes} from "../routes";
 import {dataSourceOptions} from "./config/typeorm.config";
@@ -13,11 +13,13 @@ import {UsersModule} from "./modules/users/users.module";
 import {PolytunnelModule} from "./modules/polytunnel/polytunnel.module";
 import {SensorDataModule} from "./modules/sensor-data/sensor-data.module";
 import {PlantModule} from "./modules/plant/plant.module";
-import { WaterTankModule } from "./modules/water-tank/water-tank.module";
-import { HarvestModule } from "./modules/harvest/harvest.module";
-import { IrrigationModule } from "./modules/irrigation/irrigation.module";
-import { DeviceModule } from "./modules/device/device.module";
-import { ScheduleModule } from "./modules/schedule/schedule.module";
+import {WaterTankModule} from "./modules/water-tank/water-tank.module";
+import {HarvestModule} from "./modules/harvest/harvest.module";
+import {IrrigationModule} from "./modules/irrigation/irrigation.module";
+import {DeviceModule} from "./modules/device/device.module";
+import {ScheduleModule} from "./modules/schedule/schedule.module";
+import {ReportsModule} from "./modules/reports/reports.module";
+import {ResponseInterceptor} from "./interceptor/response.interceptor";
 
 
 @Module({
@@ -38,12 +40,13 @@ import { ScheduleModule } from "./modules/schedule/schedule.module";
         HarvestModule,
         IrrigationModule,
         DeviceModule,
+        ReportsModule,
         ScheduleModule
 
     ],
     controllers: [AppController,],
     providers: [AppService,
-        MqttService
+        MqttService,
     ],
 })
 export class AppModule {

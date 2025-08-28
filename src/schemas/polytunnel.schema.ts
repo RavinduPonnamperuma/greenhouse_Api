@@ -52,7 +52,7 @@ export class Polytunnel extends BaseEntity {
     @ManyToOne(() => User, user => user.polytunnel)
     user: User;
 
-    @OneToOne(() => Device, device => device.polyTunnel)
+    @ManyToOne(() => Device, device => device.polyTunnel)
     @JoinColumn()
     device: Device;
 

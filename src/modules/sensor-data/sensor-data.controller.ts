@@ -8,7 +8,7 @@ export class SensorDataController {
 
     @Get()
     async findAll(
-        @Query('topic')topic: string,
+        @Query('topic') topic: string,
     ) {
         return await this.sensorDataService.getAllSensorData(topic)
     }
@@ -17,4 +17,11 @@ export class SensorDataController {
     async getWaterTank(@Param('id') id: number) {
         return await this.sensorDataService.getWaterTankLevel(id)
     }
+
+
+    @Get('dashboard')
+    async getDashBord() {
+        return await this.sensorDataService.getDashBoardDate()
+    }
+
 }

@@ -13,8 +13,8 @@ export class Device extends BaseEntity {
   @Column()
   code: string;
 
-  @OneToOne(() => Polytunnel, polytunnel => polytunnel.device)
-  polyTunnel: Polytunnel;
+  @OneToMany(() => Polytunnel, polytunnel => polytunnel.device)
+  polyTunnel: Polytunnel[];
 
   @OneToMany(() => Sensors, sensors => sensors.device)
   sensors: Sensors[];
